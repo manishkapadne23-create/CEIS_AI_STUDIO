@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { mockAIResponse } from '../services/mockAI';
-import Sidebar from '../components/Sidebar';
-import ChatWindow from '../components/ChatWindow';
-import ChatInput from '../components/ChatInput';
-import WelcomeScreen from '../components/WelcomeScreen';
-import QuickPrompts from '../components/QuickPrompts';
+import React, { useEffect, useState } from "react";
+
+import Sidebar from "../components/Sidebar";
+import ChatWindow from "../components/ChatWindow";
+import ChatInput from "../components/ChatInput";
+import WelcomeScreen from "../components/WelcomeScreen";
+import QuickPrompts from "../components/QuickPrompts";
 
 interface ChatMessage {
   id: string;
-  role: 'user' | 'assistant';
+  role: "user" | "assistant";
   content: string;
   timestamp: Date;
 }
@@ -22,118 +22,243 @@ interface Chat {
 }
 
 const ChatPage: React.FC = () => {
+
   const [chats, setChats] = useState<Chat[]>([]);
   const [currentChatId, setCurrentChatId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [activeMenu, setActiveMenu] = useState("chat");
 
-  const currentChat = chats.find((chat) => chat.id === currentChatId);
-  const messages = currentChat?.messages || [];
+  const currentChat =
+    chats.find((chat) => chat.id === currentChatId) ?? null;
 
-  // Create a new chat
+  const messages = currentChat?.messages ?? [];
+
+  useEffect(() => {
+    if (chats.length === 0) {
+      const firstChat: Chat = {
+        id: crypto.randomUUID(),
+        title: "New Chat",
+        messages: [],
+        date: new Date().toLocaleDateString(),
+        createdAt: new Date(),
+      };
+
+      setChats([firstChat]);
+      setCurrentChatId(firstChat.id);
+    }
+  }, []);
+
   const handleNewChat = () => {
+
     const newChat: Chat = {
-      id: Date.now().toString(),
-      title: 'New Chat',
+      id: crypto.randomUUID(),
+      title: "New Chat",
       messages: [],
       date: new Date().toLocaleDateString(),
       createdAt: new Date(),
     };
-    setChats([newChat, ...chats]);
+
+    setChats((prev) => [newChat, ...prev]);
+
     setCurrentChatId(newChat.id);
+
   };
 
-  // Select a chat
   const handleSelectChat = (chatId: string) => {
     setCurrentChatId(chatId);
   };
 
-  // Send message
   const handleSendMessage = async (userMessage: string) => {
+
     if (!currentChatId) return;
 
-    // Add user message
-    const userMsgId = Date.now().toString();
+    const userMessageObject: ChatMessage = {
 
-    setChats((prevChats) => {
-      const updatedChats = prevChats.map((chat) => {
-        if (chat.id === currentChatId) {
-          const newMessages = [
-            ...chat.messages,
-            {
-              id: userMsgId,
-              role: 'user' as const,
-              content: userMessage,
-              timestamp: new Date(),
-            },
-          ];
+      id: crypto.randomUUID(),
 
-          // Update title if it's the first message
-          const title =
-            chat.messages.length === 0
-              ? userMessage.split(' ').slice(0, 5).join(' ')
-              : chat.title;
+      role: "user",
 
-          return {
-            ...chat,
-            messages: newMessages,
-            title: title.length > 30 ? title.substring(0, 30) + '...' : title,
-          };
+      content: userMessage,
+
+      timestamp: new Date(),
+
+    };
+
+    setChats((prev) =>
+      prev.map((chat) => {
+
+        if (chat.id !== currentChatId) return chat;
+
+        const updatedMessages = [
+          ...chat.messages,
+          userMessageObject,
+        ];
+
+        let title = chat.title;
+
+        if (chat.messages.length === 0) {
+
+          title = userMessage
+            .split(" ")
+            .slice(0, 5)
+            .join(" ");
+
+          if (title.length > 35) {
+
+            title = title.substring(0, 35) + "...";
+
+          }
+
         }
-        return chat;
-      });
 
-      return updatedChats;
-    });
+        return {
+
+          ...chat,
+
+          title,
+
+          messages: updatedMessages,
+
+        };
+
+      })
+    );
 
     setIsLoading(true);
 
-    // Simulate AI response delay
-    setTimeout(() => {
-      const aiResponse = mockAIResponse(userMessage);
-      const aiMsgId = (Date.now() + 1).toString();
+    try {
 
-      setChats((prevChats) => {
-        return prevChats.map((chat) => {
-          if (chat.id === currentChatId) {
-            return {
-              ...chat,
-              messages: [
-                ...chat.messages,
-                {
-                  id: aiMsgId,
-                  role: 'assistant' as const,
-                  content: aiResponse,
-                  timestamp: new Date(),
-                },
-              ],
-            };
-          }
-          return chat;
-        });
-      });
+      const response = await fetch(
+        "http://localhost:5000/api/chat",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            message: userMessage,
+          }),
+        }
+      );
+
+      if (!response.ok) {
+
+        throw new Error("Server Error");
+
+      }
+
+      const data = await response.json();
+
+      const assistantMessage: ChatMessage = {
+
+        id: crypto.randomUUID(),
+
+        role: "assistant",
+
+        content: data.reply,
+
+        timestamp: new Date(),
+
+      };
+
+      setChats((prev) =>
+        prev.map((chat) => {
+
+          if (chat.id !== currentChatId) return chat;
+
+          return {
+
+            ...chat,
+
+            messages: [
+              ...chat.messages,
+              assistantMessage,
+            ],
+
+          };
+
+        })
+      );
+
+    } catch (err) {
+
+      const assistantMessage: ChatMessage = {
+
+        id: crypto.randomUUID(),
+
+        role: "assistant",
+
+        content:
+          "Unable to connect to AI Server.",
+
+        timestamp: new Date(),
+
+      };
+
+      setChats((prev) =>
+        prev.map((chat) => {
+
+          if (chat.id !== currentChatId) return chat;
+
+          return {
+
+            ...chat,
+
+            messages: [
+              ...chat.messages,
+              assistantMessage,
+            ],
+
+          };
+
+        })
+      );
+
+      console.error(err);
+
+    } finally {
 
       setIsLoading(false);
-    }, 1000);
-  };
 
-  // Handle quick prompt
+    }
+
+  };
+// Handle Quick Prompt
   const handleQuickPrompt = (prompt: string) => {
-    if (!currentChatId) {
-      handleNewChat();
-      setTimeout(() => {
-        handleSendMessage(prompt);
-      }, 100);
-    } else {
-      handleSendMessage(prompt);
-    }
-  };
 
-  // Initialize first chat
-  useEffect(() => {
-    if (chats.length === 0) {
-      handleNewChat();
+    if (!currentChatId) {
+
+      const newChat: Chat = {
+
+        id: crypto.randomUUID(),
+
+        title: "New Chat",
+
+        messages: [],
+
+        date: new Date().toLocaleDateString(),
+
+        createdAt: new Date(),
+
+      };
+
+      setChats((prev) => [newChat, ...prev]);
+
+      setCurrentChatId(newChat.id);
+
+      setTimeout(() => {
+
+        handleSendMessage(prompt);
+
+      }, 100);
+
+      return;
+
     }
-  }, []);
+
+    handleSendMessage(prompt);
+
+  };
 
   const recentChats = chats.map((chat) => ({
     id: chat.id,
@@ -142,35 +267,54 @@ const ChatPage: React.FC = () => {
   }));
 
   return (
+
     <div className="flex h-screen bg-slate-950">
-      {/* Sidebar */}
+
       <Sidebar
+        activeMenu={activeMenu}
+        onMenuChange={setActiveMenu}
         onNewChat={handleNewChat}
         onSelectChat={handleSelectChat}
-        currentChatId={currentChatId || undefined}
+        currentChatId={currentChatId ?? undefined}
         recentChats={recentChats}
       />
 
-      {/* Main Chat Area */}
       <div className="flex-1 flex flex-col overflow-hidden">
+
         {messages.length === 0 ? (
+
           <>
-            {/* Welcome Screen and Quick Prompts */}
-            <WelcomeScreen onQuickPrompt={handleQuickPrompt} />
-            <QuickPrompts onSelectPrompt={handleQuickPrompt} />
+
+            <WelcomeScreen
+              onQuickPrompt={handleQuickPrompt}
+            />
+
+            <QuickPrompts
+              onSelectPrompt={handleQuickPrompt}
+            />
+
           </>
+
         ) : (
-          <>
-            {/* Chat Window */}
-            <ChatWindow messages={messages} isLoading={isLoading} />
-          </>
+
+          <ChatWindow
+            messages={messages}
+            isLoading={isLoading}
+          />
+
         )}
 
-        {/* Chat Input */}
-        <ChatInput onSendMessage={handleSendMessage} isLoading={isLoading} />
+        <ChatInput
+          onSendMessage={handleSendMessage}
+          isLoading={isLoading}
+        />
+
       </div>
+
     </div>
+
   );
+
 };
 
 export default ChatPage;

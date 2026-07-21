@@ -1,124 +1,317 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+
+interface RecentChat {
+  id: string;
+  title: string;
+  date: string;
+}
 
 interface SidebarProps {
+  activeMenu: string;
+  onMenuChange: (menu: string) => void;
   onNewChat: () => void;
   onSelectChat: (chatId: string) => void;
   currentChatId?: string;
-  recentChats: Array<{ id: string; title: string; date: string }>;
+  recentChats: RecentChat[];
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ onNewChat, onSelectChat, currentChatId, recentChats }) => {
-  const [isCollapsed, setIsCollapsed] = useState(false);
+const Sidebar: React.FC<SidebarProps> = ({
+  activeMenu,
+  onMenuChange,
+  onNewChat,
+  onSelectChat,
+  currentChatId,
+  recentChats,
+}) => {
+  const [collapsed, setCollapsed] = useState(false);
+
+  const menuItems = [
+    {
+      id: "dashboard",
+      icon: "🏠",
+      title: "Dashboard",
+    },
+    {
+      id: "chat",
+      icon: "🤖",
+      title: "AI Chat",
+    },
+    {
+      id: "engineering",
+      icon: "🏗️",
+      title: "Engineering Hub",
+    },
+    {
+      id: "learning",
+      icon: "🎓",
+      title: "Learning Hub",
+    },
+    {
+      id: "documents",
+      icon: "📄",
+      title: "Documents",
+    },
+    {
+      id: "tools",
+      icon: "🧮",
+      title: "Engineering Tools",
+    },
+  ];
 
   return (
-    <>
-      {/* Desktop Sidebar */}
-      <aside
-        className={`hidden lg:flex flex-col border-r border-white/10 bg-slate-950/80 backdrop-blur-xl transition-all duration-300 ${
-          isCollapsed ? 'w-20' : 'w-64'
-        }`}
-      >
-        {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-white/10">
-          {!isCollapsed && (
-            <div className="flex items-center gap-2">
-              <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center">
-                <span className="text-xs font-bold text-white">⚙</span>
-              </div>
-              <span className="font-bold text-white">CEIS AI</span>
-            </div>
-          )}
-          <button
-            onClick={() => setIsCollapsed(!isCollapsed)}
-            className="p-1.5 rounded-lg hover:bg-white/10 text-slate-400 hover:text-white transition-colors"
-          >
-            {isCollapsed ? (
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            ) : (
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            )}
-          </button>
-        </div>
+    <aside
+      className={`${
+        collapsed ? "w-20" : "w-72"
+      } h-screen bg-slate-900 border-r border-slate-800 text-white flex flex-col transition-all duration-300`}
+    >
+      {/* Header */}
 
-        {/* New Chat Button */}
-        <div className="p-4">
-          <button
-            onClick={onNewChat}
-            className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-gradient-to-r from-cyan-500/20 to-blue-600/20 border border-cyan-500/30 hover:border-cyan-500/50 text-cyan-300 hover:text-cyan-200 font-semibold transition-all duration-300"
-          >
-            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M10.5 1.5H5.75A2.25 2.25 0 003.5 3.75v12.5A2.25 2.25 0 005.75 18.5h8.5a2.25 2.25 0 002.25-2.25V9.5M10.5 1.5v4m0-4h4m-4 4h4M3.5 10.5h13" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-            {!isCollapsed && 'New Chat'}
-          </button>
-        </div>
+      <div className="flex items-center justify-between p-5 border-b border-slate-800">
 
-        {/* Recent Chats */}
-        <div className="flex-1 overflow-y-auto px-2 pb-4">
-          {!isCollapsed && (
-            <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider px-2 py-3 mb-2">
-              Recent chats
+        {!collapsed && (
+          <div>
+
+            <h1 className="text-2xl font-bold text-cyan-400">
+              CEIS AI
+            </h1>
+
+            <p className="text-xs text-slate-400">
+              Engineering Intelligence
             </p>
-          )}
 
-          <div className="space-y-2">
-            {recentChats.map((chat) => (
-              <button
-                key={chat.id}
-                onClick={() => onSelectChat(chat.id)}
-                className={`w-full text-left px-3 py-2 rounded-lg transition-all duration-300 truncate ${
-                  currentChatId === chat.id
-                    ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/30'
-                    : 'text-slate-400 hover:text-slate-300 hover:bg-white/5'
-                }`}
-                title={chat.title}
-              >
-                {isCollapsed ? (
-                  <span className="text-lg">💬</span>
-                ) : (
-                  <>
-                    <p className="text-sm font-medium truncate">{chat.title}</p>
-                    <p className="text-xs text-slate-500 mt-1">{chat.date}</p>
-                  </>
-                )}
-              </button>
-            ))}
           </div>
-        </div>
+        )}
 
-        {/* Footer */}
-        <div className="border-t border-white/10 p-4 space-y-2">
-          <button className="w-full p-2 rounded-lg hover:bg-white/5 text-slate-400 hover:text-slate-300 transition-colors text-sm text-left">
-            {isCollapsed ? '⚙' : 'Settings'}
-          </button>
-          <button className="w-full p-2 rounded-lg hover:bg-white/5 text-slate-400 hover:text-slate-300 transition-colors text-sm text-left">
-            {isCollapsed ? '?' : 'Help & Feedback'}
-          </button>
-        </div>
-      </aside>
+        <button
+          onClick={() => setCollapsed(!collapsed)}
+          className="rounded-lg p-2 hover:bg-slate-800"
+        >
+          {collapsed ? "➡️" : "⬅️"}
+        </button>
 
-      {/* Mobile Header */}
-      <div className="lg:hidden border-b border-white/10 bg-slate-950/80 backdrop-blur-xl px-4 py-3 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center">
-            <span className="text-xs font-bold text-white">⚙</span>
-          </div>
-          <span className="font-bold text-white">CEIS AI</span>
-        </div>
+      </div>
+
+      {/* New Chat */}
+
+      <div className="p-4">
+
         <button
           onClick={onNewChat}
-          className="p-2 rounded-lg bg-cyan-500/20 border border-cyan-500/30 text-cyan-300 hover:text-cyan-200"
+          className="w-full rounded-xl bg-cyan-600 py-3 font-semibold hover:bg-cyan-500"
         >
-          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-            <path d="M10.5 1.5H5.75A2.25 2.25 0 003.5 3.75v12.5A2.25 2.25 0 005.75 18.5h8.5a2.25 2.25 0 002.25-2.25V9.5M10.5 1.5v4m0-4h4m-4 4h4M3.5 10.5h13" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
+          {collapsed ? "＋" : "＋ New Chat"}
         </button>
+
       </div>
-    </>
+
+      {/* Navigation */}
+
+      <div className="px-3">
+
+        {!collapsed && (
+          <p className="mb-3 px-3 text-xs uppercase tracking-widest text-slate-500">
+            Navigation
+          </p>
+        )}
+
+        <div className="space-y-1">
+
+          {menuItems.map((item) => (
+
+            <button
+              key={item.id}
+              onClick={() => onMenuChange(item.id)}
+              className={`flex w-full items-center gap-3 rounded-xl px-3 py-3 transition ${
+                activeMenu === item.id
+                  ? "bg-cyan-600 text-white"
+                  : "hover:bg-slate-800 text-slate-300"
+              }`}
+            >
+              <span className="text-xl">
+                {item.icon}
+              </span>
+
+              {!collapsed && (
+                <span>
+                  {item.title}
+                </span>
+              )}
+
+            </button>
+
+          ))}
+
+        </div>
+
+      </div>
+
+      <div className="my-5 border-t border-slate-800" />
+
+      {/* Recent Chats */}
+
+      <div className="flex-1 overflow-y-auto px-3">
+
+        {!collapsed && (
+          <p className="mb-3 px-3 text-xs uppercase tracking-widest text-slate-500">
+            Recent Chats
+          </p>
+        )}
+
+        <div className="space-y-2">
+
+          {recentChats.map((chat) => (
+          <button
+              key={chat.id}
+              onClick={() => onSelectChat(chat.id)}
+              className={`w-full rounded-lg px-3 py-3 text-left transition ${
+                currentChatId === chat.id
+                  ? "bg-cyan-600 text-white"
+                  : "text-slate-300 hover:bg-slate-800"
+              }`}
+            >
+              {collapsed ? (
+                <span className="text-lg">💬</span>
+              ) : (
+                <>
+                  <div className="truncate font-medium">
+                    {chat.title}
+                  </div>
+
+                  <div className="mt-1 text-xs text-slate-500">
+                    {chat.date}
+                  </div>
+                </>
+              )}
+            </button>
+          ))}
+
+        </div>
+
+      </div>
+
+      {/* Bottom Menu */}
+
+      <div className="border-t border-slate-800 p-3 space-y-1">
+
+        <button
+          onClick={() => onMenuChange("subscription")}
+          className="flex w-full items-center gap-3 rounded-xl px-3 py-3 text-slate-300 hover:bg-slate-800"
+        >
+          <span className="text-xl">💳</span>
+
+          {!collapsed && (
+            <span>Subscription</span>
+          )}
+        </button>
+
+        <button
+          onClick={() => onMenuChange("notifications")}
+          className="flex w-full items-center gap-3 rounded-xl px-3 py-3 text-slate-300 hover:bg-slate-800"
+        >
+          <span className="text-xl">🔔</span>
+
+          {!collapsed && (
+            <span>Notifications</span>
+          )}
+        </button>
+
+        <button
+          onClick={() => onMenuChange("settings")}
+          className="flex w-full items-center gap-3 rounded-xl px-3 py-3 text-slate-300 hover:bg-slate-800"
+        >
+          <span className="text-xl">⚙️</span>
+
+          {!collapsed && (
+            <span>Settings</span>
+          )}
+        </button>
+
+        <button
+          onClick={() => onMenuChange("help")}
+          className="flex w-full items-center gap-3 rounded-xl px-3 py-3 text-slate-300 hover:bg-slate-800"
+        >
+          <span className="text-xl">❓</span>
+
+          {!collapsed && (
+            <span>Help</span>
+          )}
+        </button>
+
+      </div>
+
+      {/* Upgrade Card */}
+
+      <div className="px-3 pb-4">
+
+        <div className="rounded-2xl border border-cyan-600/20 bg-cyan-600/10 p-4">
+
+          {!collapsed ? (
+            <>
+              <h3 className="font-semibold text-cyan-400">
+                Upgrade to Pro
+              </h3>
+
+              <p className="mt-2 text-xs leading-5 text-slate-400">
+                Unlock AI Engineering, Smart Documents,
+                BOQ Generator, Drawing Review,
+                Estimation Tools and PMIS Integration.
+              </p>
+
+              <button
+                className="mt-4 w-full rounded-xl bg-cyan-600 py-2 font-semibold hover:bg-cyan-500"
+              >
+                Upgrade Now
+              </button>
+            </>
+          ) : (
+            <div className="text-center text-2xl">
+              🚀
+            </div>
+          )}
+
+        </div>
+
+      </div>
+
+      {/* User Section */}
+
+      <div className="border-t border-slate-800 p-4">
+
+        <div className="flex items-center gap-3">
+
+          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-cyan-600 font-bold">
+            U
+          </div>
+
+          {!collapsed && (
+            <div className="flex-1">
+
+              <div className="font-semibold">
+                User
+              </div>
+
+              <div className="text-xs text-slate-400">
+                Standard Plan
+              </div>
+</div>
+          )}
+
+        </div>
+
+        {!collapsed && (
+          <button
+            onClick={() => {
+              console.log("Logout");
+            }}
+            className="mt-4 w-full rounded-xl border border-red-500/30 py-2 text-red-400 hover:bg-red-500/10 transition"
+          >
+            Logout
+          </button>
+        )}
+
+      </div>
+
+    </aside>
   );
 };
 

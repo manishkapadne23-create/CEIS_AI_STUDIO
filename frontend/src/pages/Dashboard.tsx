@@ -1,51 +1,96 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-const Dashboard = () => {
+const modules = [
+  {
+    title: "AI Chat TEST",
+    icon: "🤖",
+    description: "Ask engineering questions with CEIS AI",
+    route: "/chat",
+  },
+  {
+    title: "Engineering Hub",
+    icon: "🏗️",
+    description: "Civil, Mechanical, Electrical & more",
+    route: "/engineering",
+  },
+  {
+    title: "Learning Hub",
+    icon: "🎓",
+    description: "Courses, Notes, MCQs and Viva",
+    route: "/learning",
+  },
+  {
+    title: "Documents",
+    icon: "📄",
+    description: "Manage drawings, PDFs and reports",
+    route: "/documents",
+  },
+  {
+    title: "Engineering Tools",
+    icon: "🧮",
+    description: "Design tools, BOQ and Estimation",
+    route: "/tools",
+  },
+  {
+    title: "PMIS Enterprise",
+    icon: "📊",
+    description: "Professional Project Management",
+    route: "/pmis",
+  },
+];
+
+const Dashboard: React.FC = () => {
+  const navigate = useNavigate();
+
   return (
-    <div
-      style={{
-        padding: "40px",
-        fontFamily: "Arial, sans-serif",
-        background: "#f4f6f9",
-        minHeight: "100vh",
-      }}
-    >
-      <h1 style={{ color: "#1976d2" }}>
-        PMIS Dashboard
-      </h1>
+    <div className="min-h-screen bg-slate-950 text-white">
 
-      <p>Welcome to Project Management Intelligence System</p>
+      {/* Header */}
+      <header className="border-b border-slate-800 bg-slate-900">
+        <div className="mx-auto max-w-7xl px-8 py-6">
+          <h1 className="text-4xl font-bold text-cyan-400">
+            CEIS AI
+          </h1>
 
-      <hr />
+          <p className="mt-2 text-slate-400">
+            Engineering Intelligence Platform
+          </p>
+        </div>
+      </header>
 
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(3,1fr)",
-          gap: "20px",
-          marginTop: "30px",
-        }}
-      >
-        <div style={cardStyle}>📁 Projects</div>
-        <div style={cardStyle}>📄 Documents</div>
-        <div style={cardStyle}>👥 Users</div>
-        <div style={cardStyle}>📅 Tasks</div>
-        <div style={cardStyle}>🤖 AI Assistant</div>
-        <div style={cardStyle}>📊 Reports</div>
-      </div>
+      {/* Dashboard */}
+      <main className="mx-auto max-w-7xl p-8">
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+
+          {modules.map((module) => (
+
+            <div
+              key={module.title}
+              onClick={() => navigate(module.route)}
+              className="cursor-pointer rounded-2xl border border-slate-800 bg-slate-900 p-6 transition hover:border-cyan-500 hover:shadow-xl hover:shadow-cyan-900/20"
+            >
+              <div className="text-5xl">
+                {module.icon}
+              </div>
+
+              <h2 className="mt-6 text-2xl font-semibold">
+                {module.title}
+              </h2>
+
+              <p className="mt-3 text-slate-400">
+                {module.description}
+              </p>
+
+            </div>
+
+          ))}
+
+        </div>
+      </main>
+
     </div>
   );
-};
-
-const cardStyle: React.CSSProperties = {
-  background: "#ffffff",
-  padding: "25px",
-  borderRadius: "12px",
-  textAlign: "center",
-  fontSize: "20px",
-  fontWeight: "bold",
-  boxShadow: "0 3px 10px rgba(0,0,0,0.1)",
-  cursor: "pointer",
 };
 
 export default Dashboard;

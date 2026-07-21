@@ -15,3 +15,42 @@ model User {
   role      String   @default("USER")
   createdAt DateTime @default(now())
 }
+
+model KnowledgeBaseCategory {
+  id          String                   @id @default(cuid())
+  name        String
+  description String?
+  isActive    Boolean                  @default(true)
+  createdAt   DateTime                 @default(now())
+  updatedAt   DateTime                 @updatedAt
+  deletedAt   DateTime?
+  subCategories KnowledgeBaseSubCategory[]
+  documents   KnowledgeBaseDocument[]
+}
+
+model KnowledgeBaseSubCategory {
+  id          String                   @id @default(cuid())
+  name        String
+  description String?
+  isActive    Boolean                  @default(true)
+  createdAt   DateTime                 @default(now())
+  updatedAt   DateTime                 @updatedAt
+  deletedAt   DateTime?
+  categoryId  String
+  category    KnowledgeBaseCategory    @relation(fields: [categoryId], references: [id])
+  documents   KnowledgeBaseDocument[]
+}
+
+model KnowledgeBaseDocument {
+  id            String                   @id @default(cuid())
+  title         String
+  content       String
+  isActive      Boolean                  @default(true)
+  createdAt     DateTime                 @default(now())
+  updatedAt     DateTime                 @updatedAt
+  deletedAt     DateTime?
+  categoryId    String
+  subCategoryId String
+  category      KnowledgeBaseCategory    @relation(fields: [categoryId], references: [id])
+  subCategory   KnowledgeBaseSubCategory @relation(fields: [subCategoryId], references: [id])
+}

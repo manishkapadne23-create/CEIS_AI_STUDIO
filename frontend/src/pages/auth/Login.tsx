@@ -1,16 +1,55 @@
-import React, { useState } from 'react';
-import Button from '../../components/Button';
-import Card from '../../components/Card';
-import Input from '../../components/Input';
-import Logo from '../../components/Logo';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Button from "../../components/Button";
+import Card from "../../components/Card";
+import Input from "../../components/Input";
+import Logo from "../../components/Logo";
 
 const LoginPage: React.FC = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [rememberMe, setRememberMe] = useState(false);
+  const navigate = useNavigate();
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+
+    setLoading(true);
+    setError("");
+
+    try {
+      const response = await fetch("http://localhost:5000/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      });
+
+      const data = await response.json();
+
+      console.log("Login Response:", data);
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.message || "Login Failed");
+      }
+
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
+
+      navigate("/dashboard");
+    } catch (err: any) {
+      console.error("Login Error:", err);
+      setError(err.message || "Server not responding");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -26,20 +65,12 @@ const LoginPage: React.FC = () => {
               <h1 className="text-4xl font-semibold tracking-tight text-white sm:text-5xl">
                 Project Management Intelligence System
               </h1>
-              <p className="max-w-2xl text-lg leading-8 text-slate-400">
-                Empower delivery, operations, and leadership teams with real-time visibility, AI-assisted decisions, and reliable execution across every portfolio.
-              </p>
-            </div>
 
-            <div className="grid gap-4 sm:grid-cols-2">
-              <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-4">
-                <p className="text-sm font-semibold text-white">Operational clarity</p>
-                <p className="mt-1 text-sm text-slate-400">Track milestones, risks, and performance in one intelligent workspace.</p>
-              </div>
-              <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-4">
-                <p className="text-sm font-semibold text-white">Trusted governance</p>
-                <p className="mt-1 text-sm text-slate-400">Move confidently with secure access and enterprise-ready controls.</p>
-              </div>
+              <p className="max-w-2xl text-lg leading-8 text-slate-400">
+                Empower delivery, operations, and leadership teams with
+                real-time visibility, AI-assisted decisions, and reliable
+                execution across every portfolio.
+              </p>
             </div>
           </div>
 
@@ -49,23 +80,29 @@ const LoginPage: React.FC = () => {
             </div>
 
             <div className="mb-8 space-y-2 text-center">
-              <h2 className="text-3xl font-semibold text-white">Welcome Back</h2>
-              <p className="text-sm text-slate-400">Sign in to continue to your PMIS workspace.</p>
+              <h2 className="text-3xl font-semibold text-white">
+                Welcome Back
+              </h2>
+
+              <p className="text-sm text-slate-400">
+                Sign in to continue to your PMIS workspace.
+              </p>
             </div>
+
+            {error && (
+              <div className="mb-4 rounded-lg border border-red-500/20 bg-red-500/10 p-3 text-sm text-red-400">
+                {error}
+              </div>
+            )}
 
             <form className="space-y-5" onSubmit={handleSubmit}>
               <Input
-                label="Username"
-                name="username"
-                type="text"
-                placeholder="Enter your username"
-                value={username}
-                onChange={(event) => setUsername(event.target.value)}
-                icon={
-                  <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM5 20a7 7 0 0114 0" />
-                  </svg>
-                }
+                label="Email"
+                name="email"
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
 
               <Input
@@ -74,12 +111,7 @@ const LoginPage: React.FC = () => {
                 type="password"
                 placeholder="Enter your password"
                 value={password}
-                onChange={(event) => setPassword(event.target.value)}
-                icon={
-                  <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M12 15v2m-4 0h8m-6-6V8a2 2 0 114 0v3m-5 0h8a2 2 0 012 2v4a2 2 0 01-2 2H7a2 2 0 01-2-2v-4a2 2 0 012-2z" />
-                  </svg>
-                }
+                onChange={(e) => setPassword(e.target.value)}
               />
 
               <div className="flex items-center justify-between gap-3">
@@ -87,26 +119,23 @@ const LoginPage: React.FC = () => {
                   <input
                     type="checkbox"
                     checked={rememberMe}
-                    onChange={(event) => setRememberMe(event.target.checked)}
-                    className="h-4 w-4 rounded border-slate-700 bg-slate-950 text-cyan-500 focus:ring-cyan-400"
+                    onChange={(e) => setRememberMe(e.target.checked)}
+                    className="h-4 w-4"
                   />
                   Remember Me
                 </label>
-                <a href="#" className="text-sm font-medium text-cyan-400 transition-colors hover:text-cyan-300">
-                  Forgot Password?
-                </a>
               </div>
 
-              <Button type="submit" className="w-full py-3 text-base">
-                Sign In
+              <Button
+                type="submit"
+                className="w-full py-3 text-base"
+                disabled={loading}
+              >
+                {loading ? "Signing In..." : "Sign In"}
               </Button>
             </form>
           </Card>
         </div>
-
-        <footer className="mt-8 text-center text-sm text-slate-500">
-          © 2026 Sarathi Intelligence. All Rights Reserved.
-        </footer>
       </div>
     </div>
   );
