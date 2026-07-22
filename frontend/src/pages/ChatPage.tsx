@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 import Sidebar from "../components/Sidebar";
 import ChatWindow from "../components/ChatWindow";
@@ -27,11 +28,22 @@ const ChatPage: React.FC = () => {
   const [currentChatId, setCurrentChatId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [activeMenu, setActiveMenu] = useState("chat");
+  const [selectedDomain, setSelectedDomain] = useState<{ id: string; name: string } | null>(null);
+  const location = useLocation();
 
   const currentChat =
     chats.find((chat) => chat.id === currentChatId) ?? null;
 
   const messages = currentChat?.messages ?? [];
+
+  useEffect(() => {
+    const storedDomainId = localStorage.getItem("selectedEngineeringDomainId");
+    const storedDomainName = localStorage.getItem("selectedEngineeringDomainName");
+
+    if (storedDomainId && storedDomainName) {
+      setSelectedDomain({ id: storedDomainId, name: storedDomainName });
+    }
+  }, [location.key]);
 
   useEffect(() => {
     if (chats.length === 0) {
@@ -137,6 +149,8 @@ const ChatPage: React.FC = () => {
           },
           body: JSON.stringify({
             message: userMessage,
+            domainId: selectedDomain?.id || null,
+            domainName: selectedDomain?.name || null,
           }),
         }
       );
@@ -280,6 +294,11 @@ const ChatPage: React.FC = () => {
       />
 
       <div className="flex-1 flex flex-col overflow-hidden">
+        {selectedDomain ? (
+          <div className="border-b border-slate-800 bg-slate-900/70 px-5 py-3 text-sm text-slate-300">
+            Active domain: <span className="font-semibold text-cyan-400">{selectedDomain.name}</span>
+          </div>
+        ) : null}
 
         {messages.length === 0 ? (
 

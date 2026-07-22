@@ -3,7 +3,7 @@ import { getAIResponse } from "../services/ai.service.js";
 
 export const chatWithAI = async (req: Request, res: Response) => {
   try {
-    const { message } = req.body;
+    const { message, domainId, domainName } = req.body;
 
     if (!message || typeof message !== "string") {
       return res.status(400).json({
@@ -12,7 +12,7 @@ export const chatWithAI = async (req: Request, res: Response) => {
       });
     }
 
-    const reply = await getAIResponse(message);
+    const reply = await getAIResponse(message, domainId, domainName);
 
     return res.json({
       success: true,

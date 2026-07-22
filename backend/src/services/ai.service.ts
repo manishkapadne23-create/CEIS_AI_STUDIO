@@ -3,8 +3,12 @@ import axios from "axios";
 const OLLAMA_URL = "http://localhost:11434/api/generate";
 const MODEL = "qwen2.5:0.5b";
 
-export const getAIResponse = async (message: string): Promise<string> => {
+export const getAIResponse = async (message: string, domainId?: string | null, domainName?: string | null): Promise<string> => {
   try {
+    const contextSection = domainName
+      ? `\n\nActive Engineering Domain:\n- Domain ID: ${domainId || "n/a"}\n- Domain Name: ${domainName}`
+      : "";
+
     const systemPrompt = `
 You are Sarathi AI, an Engineering Intelligence Assistant developed by CEIS.
 
@@ -20,7 +24,7 @@ Your expertise includes:
 - IS Codes
 - MoRTH Specifications
 
-Always provide accurate, professional and practical engineering guidance.
+Always provide accurate, professional and practical engineering guidance.${contextSection}
 `;
 
     const response = await axios.post(OLLAMA_URL, {

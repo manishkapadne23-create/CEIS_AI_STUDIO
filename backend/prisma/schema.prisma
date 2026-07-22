@@ -54,3 +54,16 @@ model KnowledgeBaseDocument {
   category      KnowledgeBaseCategory    @relation(fields: [categoryId], references: [id])
   subCategory   KnowledgeBaseSubCategory @relation(fields: [subCategoryId], references: [id])
 }
+
+model EngineeringDomain {
+  id            String   @id @default(cuid())
+  name          String   @unique
+  slug          String   @unique
+  icon          String?
+  description   String?
+  color         String?
+  displayOrder  Int      @default(0)
+  isActive      Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
