@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 import Sidebar from "../components/Sidebar";
@@ -23,12 +23,21 @@ interface Chat {
 }
 
 const ChatPage: React.FC = () => {
-
   const [chats, setChats] = useState<Chat[]>([]);
-  const [currentChatId, setCurrentChatId] = useState<string | null>(null);
+  const [currentChatId, setCurrentChatId] =
+    useState<string | null>(null);
+
   const [isLoading, setIsLoading] = useState(false);
   const [activeMenu, setActiveMenu] = useState("chat");
-  const [selectedDomain, setSelectedDomain] = useState<{ id: string; name: string } | null>(null);
+
+  const [selectedDomain, setSelectedDomain] = useState<{
+    id: string;
+    name: string;
+  } | null>(null);
+
+  const abortControllerRef =
+    useRef<AbortController | null>(null);
+
   const location = useLocation();
 
   const currentChat =
@@ -37,11 +46,21 @@ const ChatPage: React.FC = () => {
   const messages = currentChat?.messages ?? [];
 
   useEffect(() => {
-    const storedDomainId = localStorage.getItem("selectedEngineeringDomainId");
-    const storedDomainName = localStorage.getItem("selectedEngineeringDomainName");
+    const storedDomainId = localStorage.getItem(
+      "selectedEngineeringDomainId"
+    );
+
+    const storedDomainName = localStorage.getItem(
+      "selectedEngineeringDomainName"
+    );
 
     if (storedDomainId && storedDomainName) {
-      setSelectedDomain({ id: storedDomainId, name: storedDomainName });
+      setSelectedDomain({
+        id: storedDomainId,
+        name: storedDomainName,
+      });
+    } else {
+      setSelectedDomain(null);
     }
   }, [location.key]);
 
@@ -61,6 +80,11 @@ const ChatPage: React.FC = () => {
   }, []);
 
   const handleNewChat = () => {
+    if (isLoading) {
+      abortControllerRef.current?.abort();
+      abortControllerRef.current = null;
+      setIsLoading(false);
+    }
 
     const newChat: Chat = {
       id: crypto.randomUUID(),
@@ -71,75 +95,77 @@ const ChatPage: React.FC = () => {
     };
 
     setChats((prev) => [newChat, ...prev]);
-
     setCurrentChatId(newChat.id);
-
   };
 
   const handleSelectChat = (chatId: string) => {
+    if (isLoading) return;
+
     setCurrentChatId(chatId);
   };
 
-  const handleSendMessage = async (userMessage: string) => {
+  const sendMessageToAI = async (
+    userMessage: string,
+    chatId: string,
+    addUserMessage = true
+  ) => {
+    if (isLoading) return;
 
-    if (!currentChatId) return;
+    const targetChat =
+      chats.find((chat) => chat.id === chatId) ?? null;
+
+    if (!targetChat) return;
 
     const userMessageObject: ChatMessage = {
-
       id: crypto.randomUUID(),
-
       role: "user",
-
       content: userMessage,
-
       timestamp: new Date(),
-
     };
 
-    setChats((prev) =>
-      prev.map((chat) => {
+    const existingMessages = targetChat.messages;
 
-        if (chat.id !== currentChatId) return chat;
+    if (addUserMessage) {
+      setChats((prev) =>
+        prev.map((chat) => {
+          if (chat.id !== chatId) return chat;
 
-        const updatedMessages = [
-          ...chat.messages,
-          userMessageObject,
-        ];
+          let title = chat.title;
 
-        let title = chat.title;
+          if (chat.messages.length === 0) {
+            title = userMessage
+              .split(" ")
+              .slice(0, 5)
+              .join(" ");
 
-        if (chat.messages.length === 0) {
-
-          title = userMessage
-            .split(" ")
-            .slice(0, 5)
-            .join(" ");
-
-          if (title.length > 35) {
-
-            title = title.substring(0, 35) + "...";
-
+            if (title.length > 35) {
+              title = title.substring(0, 35) + "...";
+            }
           }
 
-        }
+          return {
+            ...chat,
+            title,
+            messages: [
+              ...chat.messages,
+              userMessageObject,
+            ],
+          };
+        })
+      );
+    }
 
-        return {
+    const history = existingMessages.map((message) => ({
+      role: message.role,
+      content: message.content,
+    }));
 
-          ...chat,
-
-          title,
-
-          messages: updatedMessages,
-
-        };
-
-      })
-    );
+    const abortController = new AbortController();
+    abortControllerRef.current = abortController;
 
     setIsLoading(true);
 
     try {
-
       const response = await fetch(
         "http://localhost:5000/api/chat",
         {
@@ -147,131 +173,124 @@ const ChatPage: React.FC = () => {
           headers: {
             "Content-Type": "application/json",
           },
+          signal: abortController.signal,
           body: JSON.stringify({
             message: userMessage,
-            domainId: selectedDomain?.id || null,
-            domainName: selectedDomain?.name || null,
+            domainId: selectedDomain?.id ?? null,
+            domainName: selectedDomain?.name ?? null,
+            history,
           }),
         }
       );
 
       if (!response.ok) {
-
-        throw new Error("Server Error");
-
+        throw new Error(
+          `AI Server Error: ${response.status}`
+        );
       }
 
       const data = await response.json();
 
       const assistantMessage: ChatMessage = {
-
         id: crypto.randomUUID(),
-
         role: "assistant",
-
-        content: data.reply,
-
+        content:
+          data.reply ??
+          "The AI server returned an empty response.",
         timestamp: new Date(),
-
       };
 
       setChats((prev) =>
         prev.map((chat) => {
-
-          if (chat.id !== currentChatId) return chat;
+          if (chat.id !== chatId) return chat;
 
           return {
-
             ...chat,
-
             messages: [
               ...chat.messages,
               assistantMessage,
             ],
-
           };
-
         })
       );
+    } catch (error) {
+      if (
+        error instanceof DOMException &&
+        error.name === "AbortError"
+      ) {
+        console.log("AI response stopped by user.");
+        return;
+      }
 
-    } catch (err) {
+      console.error(error);
 
       const assistantMessage: ChatMessage = {
-
         id: crypto.randomUUID(),
-
         role: "assistant",
-
         content:
-          "Unable to connect to AI Server.",
-
+          "Unable to connect to AI Server. Please check that the backend and AI service are running.",
         timestamp: new Date(),
-
       };
 
       setChats((prev) =>
         prev.map((chat) => {
-
-          if (chat.id !== currentChatId) return chat;
+          if (chat.id !== chatId) return chat;
 
           return {
-
             ...chat,
-
             messages: [
               ...chat.messages,
               assistantMessage,
             ],
-
           };
-
         })
       );
-
-      console.error(err);
-
     } finally {
-
+      abortControllerRef.current = null;
       setIsLoading(false);
-
     }
-
   };
-// Handle Quick Prompt
-  const handleQuickPrompt = (prompt: string) => {
 
-    if (!currentChatId) {
+  const handleSendMessage = async (
+    userMessage: string
+  ) => {
+    if (!currentChatId || isLoading) return;
 
-      const newChat: Chat = {
+    await sendMessageToAI(
+      userMessage,
+      currentChatId,
+      true
+    );
+  };
 
-        id: crypto.randomUUID(),
+  const handleStop = () => {
+    abortControllerRef.current?.abort();
+    abortControllerRef.current = null;
+    setIsLoading(false);
+  };
 
-        title: "New Chat",
+  const handleClearChat = () => {
+    if (!currentChatId || isLoading) return;
 
-        messages: [],
+    setChats((prev) =>
+      prev.map((chat) => {
+        if (chat.id !== currentChatId) return chat;
 
-        date: new Date().toLocaleDateString(),
+        return {
+          ...chat,
+          title: "New Chat",
+          messages: [],
+        };
+      })
+    );
+  };
 
-        createdAt: new Date(),
-
-      };
-
-      setChats((prev) => [newChat, ...prev]);
-
-      setCurrentChatId(newChat.id);
-
-      setTimeout(() => {
-
-        handleSendMessage(prompt);
-
-      }, 100);
-
-      return;
-
-    }
+  const handleQuickPrompt = (
+    prompt: string
+  ) => {
+    if (!currentChatId || isLoading) return;
 
     handleSendMessage(prompt);
-
   };
 
   const recentChats = chats.map((chat) => ({
@@ -281,9 +300,7 @@ const ChatPage: React.FC = () => {
   }));
 
   return (
-
     <div className="flex h-screen bg-slate-950">
-
       <Sidebar
         activeMenu={activeMenu}
         onMenuChange={setActiveMenu}
@@ -296,14 +313,15 @@ const ChatPage: React.FC = () => {
       <div className="flex-1 flex flex-col overflow-hidden">
         {selectedDomain ? (
           <div className="border-b border-slate-800 bg-slate-900/70 px-5 py-3 text-sm text-slate-300">
-            Active domain: <span className="font-semibold text-cyan-400">{selectedDomain.name}</span>
+            Active domain:{" "}
+            <span className="font-semibold text-cyan-400">
+              {selectedDomain.name}
+            </span>
           </div>
         ) : null}
 
         {messages.length === 0 ? (
-
           <>
-
             <WelcomeScreen
               onQuickPrompt={handleQuickPrompt}
             />
@@ -311,29 +329,23 @@ const ChatPage: React.FC = () => {
             <QuickPrompts
               onSelectPrompt={handleQuickPrompt}
             />
-
           </>
-
         ) : (
-
           <ChatWindow
             messages={messages}
             isLoading={isLoading}
-          />
-
+            onClearChat={handleClearChat}
+                    />
         )}
 
         <ChatInput
           onSendMessage={handleSendMessage}
           isLoading={isLoading}
+          onStop={handleStop}
         />
-
       </div>
-
     </div>
-
   );
-
 };
 
 export default ChatPage;
