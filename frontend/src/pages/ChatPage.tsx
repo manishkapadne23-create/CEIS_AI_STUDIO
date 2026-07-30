@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useLocation } from "react-router-dom";
 
 import Sidebar from "../components/Sidebar";
 import ChatWindow from "../components/ChatWindow";
 import ChatInput from "../components/ChatInput";
 import WelcomeScreen from "../components/WelcomeScreen";
 import QuickPrompts from "../components/QuickPrompts";
+import EngineeringDomainSelector from "../components/EngineeringDomainSelector";
+import type { EngineeringDomainName } from "../types/engineeringDomainSelector";
 
 interface ChatMessage {
   id: string;
@@ -30,39 +31,16 @@ const ChatPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [activeMenu, setActiveMenu] = useState("chat");
 
-  const [selectedDomain, setSelectedDomain] = useState<{
-    id: string;
-    name: string;
-  } | null>(null);
+  const [selectedDomain, setSelectedDomain] =
+    useState<EngineeringDomainName>("Civil Engineering");
 
   const abortControllerRef =
     useRef<AbortController | null>(null);
-
-  const location = useLocation();
 
   const currentChat =
     chats.find((chat) => chat.id === currentChatId) ?? null;
 
   const messages = currentChat?.messages ?? [];
-
-  useEffect(() => {
-    const storedDomainId = localStorage.getItem(
-      "selectedEngineeringDomainId"
-    );
-
-    const storedDomainName = localStorage.getItem(
-      "selectedEngineeringDomainName"
-    );
-
-    if (storedDomainId && storedDomainName) {
-      setSelectedDomain({
-        id: storedDomainId,
-        name: storedDomainName,
-      });
-    } else {
-      setSelectedDomain(null);
-    }
-  }, [location.key]);
 
   useEffect(() => {
     if (chats.length === 0) {
@@ -176,8 +154,8 @@ const ChatPage: React.FC = () => {
           signal: abortController.signal,
           body: JSON.stringify({
             message: userMessage,
-            domainId: selectedDomain?.id ?? null,
-            domainName: selectedDomain?.name ?? null,
+            domainId: null,
+            domainName: selectedDomain,
             history,
           }),
         }
@@ -311,14 +289,12 @@ const ChatPage: React.FC = () => {
       />
 
       <div className="flex-1 flex flex-col overflow-hidden">
-        {selectedDomain ? (
-          <div className="border-b border-slate-800 bg-slate-900/70 px-5 py-3 text-sm text-slate-300">
-            Active domain:{" "}
-            <span className="font-semibold text-cyan-400">
-              {selectedDomain.name}
-            </span>
-          </div>
-        ) : null}
+        <div className="border-b border-slate-800 bg-slate-900/70 px-5 py-3">
+          <EngineeringDomainSelector
+            selectedDomain={selectedDomain}
+            onSelect={setSelectedDomain}
+          />
+        </div>
 
         {messages.length === 0 ? (
           <>
