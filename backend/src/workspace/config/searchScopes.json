@@ -1,0 +1,15 @@
+{
+  "version": "1.0.0",
+  "schema": "sarathi-ewi-search-scopes-v1",
+  "scopes": [
+    { "id": "global", "label": "Global Search", "searchWorkspaces": true, "searchItems": true },
+    { "id": "project", "label": "Project Search", "filterField": "projectId", "searchItems": true },
+    { "id": "document", "label": "Document Search", "itemTypes": ["ENGINEERING_DOCUMENT", "GENERATED_FILE"] },
+    { "id": "conversation", "label": "Conversation Search", "itemTypes": ["AI_CONVERSATION"] },
+    { "id": "standard", "label": "Standard Search", "itemTypes": ["STANDARD"] },
+    { "id": "calculator", "label": "Calculator Search", "itemTypes": ["CALCULATION"] },
+    { "id": "template", "label": "Template Search", "itemTypes": ["TEMPLATE", "REPORT", "CHECKLIST"] }
+  ],
+  "defaultLimit": 25,
+  "maxLimit": 100
+}

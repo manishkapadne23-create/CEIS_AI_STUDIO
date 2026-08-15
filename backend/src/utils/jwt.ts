@@ -1,13 +1,31 @@
+import type { SignOptions } from "jsonwebtoken";
+
+import { config } from "../config/index.js";
 import jwt from "jsonwebtoken";
 
-const SECRET = process.env.JWT_SECRET || "PMIS_SECRET_KEY";
-
-export function generateToken(payload: any) {
-  return jwt.sign(payload, SECRET, {
-    expiresIn: "7d",
-  });
+export function generateAccessToken(payload: object): string {
+  const expiresIn =
+    process.env.JWT_ACCESS_EXPIRES_IN ??
+    process.env.JWT_EXPIRES_IN ??
+    "1h";
+  const options: SignOptions = {
+    expiresIn: expiresIn as SignOptions["expiresIn"],
+  };
+  return jwt.sign(payload, config.jwt.secret, options);
 }
 
-export function verifyToken(token: string) {
-  return jwt.verify(token, SECRET);
+export function generateToken(payload: object): string {
+  return generateAccessToken(payload);
+}
+
+export function verifyToken(token: string): jwt.JwtPayload | string {
+  return jwt.verify(token, config.jwt.secret);
+}
+
+export function generateRefreshTokenJwt(payload: { id: string }): string {
+  const expiresIn = process.env.JWT_REFRESH_EXPIRES_IN ?? "30d";
+  const options: SignOptions = {
+    expiresIn: expiresIn as SignOptions["expiresIn"],
+  };
+  return jwt.sign({ ...payload, type: "refresh" }, config.jwt.secret, options);
 }

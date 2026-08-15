@@ -1,0 +1,21 @@
+{
+  "version": "1.0.0",
+  "schema": "sarathi-essae-future-v1",
+  "disclaimer": "AI-assisted simulation framework — not a replacement for specialized simulation software.",
+  "futureIntegrations": [
+    "finite-element-software",
+    "bim-simulation",
+    "traffic-simulation",
+    "energy-simulation",
+    "digital-twin-integration",
+    "pmis-planning-simulation"
+  ],
+  "assistantCapabilities": [
+    "scenario-creation",
+    "input-validation",
+    "parameter-comparison",
+    "assumption-tracking",
+    "result-interpretation",
+    "engineering-recommendations"
+  ]
+}

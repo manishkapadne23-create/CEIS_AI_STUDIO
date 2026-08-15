@@ -1,0 +1,748 @@
+{
+  "version": "1.0.0",
+  "schema": "sarathi-engineering-tree-v1",
+  "tree": [
+    {
+      "id": "civil-engineering",
+      "name": "Civil Engineering",
+      "children": [
+        {
+          "id": "structural-engineering",
+          "name": "Structural Engineering"
+        },
+        {
+          "id": "transportation-engineering",
+          "name": "Transportation Engineering",
+          "children": [
+            {
+              "id": "highway-engineering",
+              "name": "Highway Engineering"
+            },
+            {
+              "id": "bridge-engineering",
+              "name": "Bridge Engineering"
+            },
+            {
+              "id": "pavement-engineering",
+              "name": "Pavement Engineering"
+            },
+            {
+              "id": "tunnel-engineering",
+              "name": "Tunnel Engineering"
+            },
+            {
+              "id": "transportation-railway-engineering",
+              "name": "Railway Engineering"
+            },
+            {
+              "id": "airport-engineering",
+              "name": "Airport Engineering"
+            },
+            {
+              "id": "traffic-engineering",
+              "name": "Traffic Engineering"
+            },
+            {
+              "id": "road-safety-engineering",
+              "name": "Road Safety Engineering"
+            },
+            {
+              "id": "intelligent-transportation-systems",
+              "name": "Intelligent Transportation Systems"
+            }
+          ]
+        },
+        {
+          "id": "geotechnical-engineering",
+          "name": "Geotechnical Engineering"
+        },
+        {
+          "id": "water-resources-hydraulic-engineering",
+          "name": "Water Resources & Hydraulic Engineering"
+        },
+        {
+          "id": "civil-environmental-engineering",
+          "name": "Environmental Engineering"
+        },
+        {
+          "id": "construction-engineering-management",
+          "name": "Construction Engineering & Management"
+        },
+        {
+          "id": "surveying-geomatics",
+          "name": "Surveying & Geomatics"
+        },
+        {
+          "id": "urban-infrastructure-engineering",
+          "name": "Urban & Infrastructure Engineering"
+        },
+        {
+          "id": "coastal-marine-engineering",
+          "name": "Coastal & Marine Engineering"
+        },
+        {
+          "id": "materials-engineering",
+          "name": "Materials Engineering"
+        },
+        {
+          "id": "digital-construction-engineering",
+          "name": "Digital Construction Engineering"
+        },
+        {
+          "id": "building-engineering",
+          "name": "Building Engineering"
+        },
+        {
+          "id": "pipeline-engineering",
+          "name": "Pipeline Engineering"
+        }
+      ]
+    },
+    {
+      "id": "mechanical-engineering",
+      "name": "Mechanical Engineering",
+      "children": [
+        {
+          "id": "design-engineering",
+          "name": "Design Engineering"
+        },
+        {
+          "id": "manufacturing-engineering",
+          "name": "Manufacturing Engineering"
+        },
+        {
+          "id": "thermal-engineering",
+          "name": "Thermal Engineering"
+        },
+        {
+          "id": "automobile-engineering",
+          "name": "Automobile Engineering"
+        },
+        {
+          "id": "hvac-engineering",
+          "name": "HVAC Engineering"
+        },
+        {
+          "id": "mechanical-industrial-engineering",
+          "name": "Industrial Engineering"
+        },
+        {
+          "id": "mechatronics",
+          "name": "Mechatronics"
+        },
+        {
+          "id": "robotics",
+          "name": "Robotics"
+        },
+        {
+          "id": "production-engineering",
+          "name": "Production Engineering"
+        },
+        {
+          "id": "maintenance-engineering",
+          "name": "Maintenance Engineering"
+        }
+      ]
+    },
+    {
+      "id": "electrical-engineering",
+      "name": "Electrical Engineering",
+      "children": [
+        {
+          "id": "power-systems",
+          "name": "Power Systems"
+        },
+        {
+          "id": "electrical-machines",
+          "name": "Electrical Machines"
+        },
+        {
+          "id": "high-voltage-engineering",
+          "name": "High Voltage Engineering"
+        },
+        {
+          "id": "power-electronics",
+          "name": "Power Electronics"
+        },
+        {
+          "id": "control-systems",
+          "name": "Control Systems"
+        },
+        {
+          "id": "instrumentation",
+          "name": "Instrumentation"
+        },
+        {
+          "id": "electrical-renewable-energy",
+          "name": "Renewable Energy"
+        },
+        {
+          "id": "smart-grid",
+          "name": "Smart Grid"
+        },
+        {
+          "id": "transmission-distribution",
+          "name": "Transmission & Distribution"
+        }
+      ]
+    },
+    {
+      "id": "computer-engineering",
+      "name": "Computer Engineering",
+      "children": [
+        {
+          "id": "software-engineering",
+          "name": "Software Engineering"
+        },
+        {
+          "id": "artificial-intelligence",
+          "name": "Artificial Intelligence"
+        },
+        {
+          "id": "machine-learning",
+          "name": "Machine Learning"
+        },
+        {
+          "id": "data-science",
+          "name": "Data Science"
+        },
+        {
+          "id": "cyber-security",
+          "name": "Cyber Security"
+        },
+        {
+          "id": "cloud-computing",
+          "name": "Cloud Computing"
+        },
+        {
+          "id": "database-systems",
+          "name": "Database Systems"
+        },
+        {
+          "id": "networking",
+          "name": "Networking"
+        },
+        {
+          "id": "web-development",
+          "name": "Web Development"
+        },
+        {
+          "id": "mobile-development",
+          "name": "Mobile Development"
+        }
+      ]
+    },
+    {
+      "id": "electronics-telecommunication-engineering",
+      "name": "Electronics & Telecommunication",
+      "children": [
+        {
+          "id": "analog-electronics",
+          "name": "Analog Electronics"
+        },
+        {
+          "id": "digital-electronics",
+          "name": "Digital Electronics"
+        },
+        {
+          "id": "communication-systems",
+          "name": "Communication Systems"
+        },
+        {
+          "id": "embedded-systems",
+          "name": "Embedded Systems"
+        },
+        {
+          "id": "internet-of-things",
+          "name": "Internet of Things (IoT)"
+        },
+        {
+          "id": "vlsi-design",
+          "name": "VLSI Design"
+        },
+        {
+          "id": "signal-processing",
+          "name": "Signal Processing"
+        },
+        {
+          "id": "wireless-communication",
+          "name": "Wireless Communication"
+        },
+        {
+          "id": "optical-communication",
+          "name": "Optical Communication"
+        }
+      ]
+    },
+    {
+      "id": "chemical-engineering",
+      "name": "Chemical Engineering",
+      "children": [
+        {
+          "id": "process-engineering",
+          "name": "Process Engineering"
+        },
+        {
+          "id": "plant-design",
+          "name": "Plant Design"
+        },
+        {
+          "id": "petrochemical-engineering",
+          "name": "Petrochemical Engineering"
+        },
+        {
+          "id": "polymer-engineering",
+          "name": "Polymer Engineering"
+        },
+        {
+          "id": "fertilizer-technology",
+          "name": "Fertilizer Technology"
+        },
+        {
+          "id": "chemical-reaction-engineering",
+          "name": "Chemical Reaction Engineering"
+        },
+        {
+          "id": "heat-transfer",
+          "name": "Heat Transfer"
+        },
+        {
+          "id": "mass-transfer",
+          "name": "Mass Transfer"
+        },
+        {
+          "id": "process-safety",
+          "name": "Process Safety"
+        }
+      ]
+    },
+    {
+      "id": "environmental-engineering",
+      "name": "Environmental Engineering",
+      "children": [
+        {
+          "id": "water-treatment",
+          "name": "Water Treatment"
+        },
+        {
+          "id": "wastewater-engineering",
+          "name": "Wastewater Engineering"
+        },
+        {
+          "id": "air-pollution-control",
+          "name": "Air Pollution Control"
+        },
+        {
+          "id": "solid-waste-management",
+          "name": "Solid Waste Management"
+        },
+        {
+          "id": "environmental-impact-assessment",
+          "name": "Environmental Impact Assessment"
+        },
+        {
+          "id": "climate-change",
+          "name": "Climate Change"
+        },
+        {
+          "id": "sustainability",
+          "name": "Sustainability"
+        },
+        {
+          "id": "environmental-monitoring",
+          "name": "Environmental Monitoring"
+        }
+      ]
+    },
+    {
+      "id": "mining-engineering",
+      "name": "Mining Engineering",
+      "children": [
+        {
+          "id": "surface-mining",
+          "name": "Surface Mining"
+        },
+        {
+          "id": "underground-mining",
+          "name": "Underground Mining"
+        },
+        {
+          "id": "mine-planning",
+          "name": "Mine Planning"
+        },
+        {
+          "id": "rock-mechanics",
+          "name": "Rock Mechanics"
+        },
+        {
+          "id": "mineral-processing",
+          "name": "Mineral Processing"
+        },
+        {
+          "id": "mine-safety",
+          "name": "Mine Safety"
+        },
+        {
+          "id": "blasting-engineering",
+          "name": "Blasting Engineering"
+        }
+      ]
+    },
+    {
+      "id": "marine-engineering",
+      "name": "Marine Engineering",
+      "children": [
+        {
+          "id": "ship-design",
+          "name": "Ship Design"
+        },
+        {
+          "id": "ship-construction",
+          "name": "Ship Construction"
+        },
+        {
+          "id": "marine-machinery",
+          "name": "Marine Machinery"
+        },
+        {
+          "id": "offshore-engineering",
+          "name": "Offshore Engineering"
+        },
+        {
+          "id": "port-engineering",
+          "name": "Port Engineering"
+        },
+        {
+          "id": "naval-architecture",
+          "name": "Naval Architecture"
+        }
+      ]
+    },
+    {
+      "id": "aerospace-engineering",
+      "name": "Aerospace Engineering",
+      "children": [
+        {
+          "id": "aerodynamics",
+          "name": "Aerodynamics"
+        },
+        {
+          "id": "aircraft-structures",
+          "name": "Aircraft Structures"
+        },
+        {
+          "id": "propulsion-systems",
+          "name": "Propulsion Systems"
+        },
+        {
+          "id": "flight-mechanics",
+          "name": "Flight Mechanics"
+        },
+        {
+          "id": "space-engineering",
+          "name": "Space Engineering"
+        },
+        {
+          "id": "avionics",
+          "name": "Avionics"
+        }
+      ]
+    },
+    {
+      "id": "railway-engineering",
+      "name": "Railway Engineering",
+      "children": [
+        {
+          "id": "track-engineering",
+          "name": "Track Engineering"
+        },
+        {
+          "id": "railway-bridges",
+          "name": "Railway Bridges"
+        },
+        {
+          "id": "railway-signalling",
+          "name": "Railway Signalling"
+        },
+        {
+          "id": "electrification",
+          "name": "Electrification"
+        },
+        {
+          "id": "rolling-stock",
+          "name": "Rolling Stock"
+        },
+        {
+          "id": "metro-systems",
+          "name": "Metro Systems"
+        }
+      ]
+    },
+    {
+      "id": "architecture-planning",
+      "name": "Architecture & Planning",
+      "children": [
+        {
+          "id": "building-design",
+          "name": "Building Design"
+        },
+        {
+          "id": "urban-planning",
+          "name": "Urban Planning"
+        },
+        {
+          "id": "landscape-architecture",
+          "name": "Landscape Architecture"
+        },
+        {
+          "id": "interior-design",
+          "name": "Interior Design"
+        },
+        {
+          "id": "green-buildings",
+          "name": "Green Buildings"
+        },
+        {
+          "id": "smart-cities",
+          "name": "Smart Cities"
+        }
+      ]
+    },
+    {
+      "id": "agricultural-engineering",
+      "name": "Agricultural Engineering",
+      "children": [
+        {
+          "id": "irrigation-engineering",
+          "name": "Irrigation Engineering"
+        },
+        {
+          "id": "farm-machinery",
+          "name": "Farm Machinery"
+        },
+        {
+          "id": "soil-water-conservation",
+          "name": "Soil & Water Conservation"
+        },
+        {
+          "id": "post-harvest-technology",
+          "name": "Post Harvest Technology"
+        },
+        {
+          "id": "agricultural-renewable-energy",
+          "name": "Renewable Energy"
+        }
+      ]
+    },
+    {
+      "id": "oil-gas-engineering",
+      "name": "Oil & Gas Engineering",
+      "children": [
+        {
+          "id": "exploration-engineering",
+          "name": "Exploration Engineering"
+        },
+        {
+          "id": "drilling-engineering",
+          "name": "Drilling Engineering"
+        },
+        {
+          "id": "reservoir-engineering",
+          "name": "Reservoir Engineering"
+        },
+        {
+          "id": "oil-gas-production-engineering",
+          "name": "Production Engineering"
+        },
+        {
+          "id": "oil-gas-pipeline-engineering",
+          "name": "Pipeline Engineering"
+        },
+        {
+          "id": "refinery-engineering",
+          "name": "Refinery Engineering"
+        },
+        {
+          "id": "oil-gas-petrochemical-engineering",
+          "name": "Petrochemical Engineering"
+        },
+        {
+          "id": "lng-gas-processing",
+          "name": "LNG & Gas Processing"
+        },
+        {
+          "id": "oil-gas-offshore-engineering",
+          "name": "Offshore Engineering"
+        }
+      ]
+    },
+    {
+      "id": "biomedical-engineering",
+      "name": "Biomedical Engineering",
+      "children": [
+        {
+          "id": "medical-devices",
+          "name": "Medical Devices"
+        },
+        {
+          "id": "biomedical-instrumentation",
+          "name": "Biomedical Instrumentation"
+        },
+        {
+          "id": "biomaterials",
+          "name": "Biomaterials"
+        },
+        {
+          "id": "clinical-engineering",
+          "name": "Clinical Engineering"
+        },
+        {
+          "id": "rehabilitation-engineering",
+          "name": "Rehabilitation Engineering"
+        },
+        {
+          "id": "medical-imaging",
+          "name": "Medical Imaging"
+        },
+        {
+          "id": "tissue-engineering",
+          "name": "Tissue Engineering"
+        },
+        {
+          "id": "bioinformatics",
+          "name": "Bioinformatics"
+        },
+        {
+          "id": "healthcare-technology",
+          "name": "Healthcare Technology"
+        }
+      ]
+    },
+    {
+      "id": "renewable-energy",
+      "name": "Renewable Energy",
+      "children": [
+        {
+          "id": "solar-energy",
+          "name": "Solar Energy"
+        },
+        {
+          "id": "wind-energy",
+          "name": "Wind Energy"
+        },
+        {
+          "id": "hydropower",
+          "name": "Hydropower"
+        },
+        {
+          "id": "bioenergy",
+          "name": "Bioenergy"
+        },
+        {
+          "id": "geothermal-energy",
+          "name": "Geothermal Energy"
+        },
+        {
+          "id": "hydrogen-energy",
+          "name": "Hydrogen Energy"
+        },
+        {
+          "id": "energy-storage-systems",
+          "name": "Energy Storage Systems"
+        },
+        {
+          "id": "smart-energy-systems",
+          "name": "Smart Energy Systems"
+        },
+        {
+          "id": "energy-management",
+          "name": "Energy Management"
+        }
+      ]
+    },
+    {
+      "id": "automation-robotics",
+      "name": "Automation & Robotics",
+      "children": [
+        {
+          "id": "industrial-automation",
+          "name": "Industrial Automation"
+        },
+        {
+          "id": "plc-scada",
+          "name": "PLC & SCADA"
+        },
+        {
+          "id": "automation-robotics-engineering",
+          "name": "Robotics Engineering"
+        },
+        {
+          "id": "automation-mechatronics",
+          "name": "Mechatronics"
+        },
+        {
+          "id": "motion-control",
+          "name": "Motion Control"
+        },
+        {
+          "id": "machine-vision",
+          "name": "Machine Vision"
+        },
+        {
+          "id": "industrial-iot",
+          "name": "Industrial IoT (IIoT)"
+        },
+        {
+          "id": "artificial-intelligence-in-automation",
+          "name": "Artificial Intelligence in Automation"
+        },
+        {
+          "id": "digital-manufacturing",
+          "name": "Digital Manufacturing"
+        }
+      ]
+    },
+    {
+      "id": "industrial-engineering",
+      "name": "Industrial Engineering",
+      "children": [
+        {
+          "id": "industrial-production-engineering",
+          "name": "Production Engineering"
+        },
+        {
+          "id": "operations-management",
+          "name": "Operations Management"
+        },
+        {
+          "id": "supply-chain-management",
+          "name": "Supply Chain Management"
+        },
+        {
+          "id": "quality-engineering",
+          "name": "Quality Engineering"
+        },
+        {
+          "id": "lean-manufacturing",
+          "name": "Lean Manufacturing"
+        },
+        {
+          "id": "six-sigma",
+          "name": "Six Sigma"
+        },
+        {
+          "id": "facility-planning",
+          "name": "Facility Planning"
+        },
+        {
+          "id": "ergonomics",
+          "name": "Ergonomics"
+        },
+        {
+          "id": "logistics-engineering",
+          "name": "Logistics Engineering"
+        }
+      ]
+    }
+  ]
+}

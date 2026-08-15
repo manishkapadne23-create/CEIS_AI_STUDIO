@@ -1,0 +1,20 @@
+{
+  "version": "1.0.0",
+  "schema": "sarathi-ede-expertise-v1",
+  "domains": [
+    { "id": "design", "label": "Design" },
+    { "id": "construction", "label": "Construction" },
+    { "id": "planning", "label": "Planning" },
+    { "id": "contracts", "label": "Contracts" },
+    { "id": "qa-qc", "label": "QA/QC" },
+    { "id": "safety", "label": "Safety" },
+    { "id": "research", "label": "Research" },
+    { "id": "project-controls", "label": "Project Controls" }
+  ],
+  "proficiencyLevels": [
+    { "id": "beginner", "label": "Beginner", "score": 1 },
+    { "id": "intermediate", "label": "Intermediate", "score": 2 },
+    { "id": "advanced", "label": "Advanced", "score": 3 },
+    { "id": "expert", "label": "Expert", "score": 4 }
+  ]
+}

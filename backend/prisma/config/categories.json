@@ -1,0 +1,97 @@
+{
+  "version": "1.0.0",
+  "schema": "sarathi-knowledge-categories-v1",
+  "categories": [
+    {
+      "id": "standards-codes",
+      "name": "Standards & Codes",
+      "description": "National and international codes, standards, and regulatory references.",
+      "displayOrder": 1,
+      "active": true
+    },
+    {
+      "id": "design-manuals",
+      "name": "Design Manuals",
+      "description": "Design guides, manuals, and engineering handbooks.",
+      "displayOrder": 2,
+      "active": true
+    },
+    {
+      "id": "specifications",
+      "name": "Specifications",
+      "description": "Material, product, and project specifications.",
+      "displayOrder": 3,
+      "active": true
+    },
+    {
+      "id": "standard-drawings",
+      "name": "Standard Drawings",
+      "description": "Typical drawings, details, and standard layouts.",
+      "displayOrder": 4,
+      "active": true
+    },
+    {
+      "id": "engineering-calculators",
+      "name": "Engineering Calculators",
+      "description": "Calculation sheets, design tools, and computation templates.",
+      "displayOrder": 5,
+      "active": true
+    },
+    {
+      "id": "qa-qc",
+      "name": "QA/QC",
+      "description": "Quality assurance and quality control procedures.",
+      "displayOrder": 6,
+      "active": true
+    },
+    {
+      "id": "checklists",
+      "name": "Checklists",
+      "description": "Design, review, and submission checklists.",
+      "displayOrder": 7,
+      "active": true
+    },
+    {
+      "id": "boq-estimation",
+      "name": "BOQ & Estimation",
+      "description": "Bill of quantities, cost estimation, and rate analysis.",
+      "displayOrder": 8,
+      "active": true
+    },
+    {
+      "id": "construction-methodology",
+      "name": "Construction Methodology",
+      "description": "Method statements, execution plans, and construction sequences.",
+      "displayOrder": 9,
+      "active": true
+    },
+    {
+      "id": "safety",
+      "name": "Safety",
+      "description": "Safety procedures, hazard controls, and HSE guidance.",
+      "displayOrder": 10,
+      "active": true
+    },
+    {
+      "id": "technical-papers",
+      "name": "Technical Papers",
+      "description": "Research papers, technical notes, and white papers.",
+      "displayOrder": 11,
+      "active": true
+    },
+    {
+      "id": "case-studies",
+      "name": "Case Studies",
+      "description": "Project case studies, lessons learned, and reference projects.",
+      "displayOrder": 12,
+      "active": true
+    },
+    {
+      "id": "faqs",
+      "name": "FAQs",
+      "description": "Frequently asked engineering questions and answers.",
+      "displayOrder": 13,
+      "active": true
+    }
+  ]
+}

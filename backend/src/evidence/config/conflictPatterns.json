@@ -1,0 +1,41 @@
+{
+  "version": "1.0.0",
+  "schema": "sarathi-eece-conflict-patterns-v1",
+  "patterns": [
+    {
+      "id": "conflicting-standards",
+      "label": "Conflicting Standards",
+      "description": "Multiple standards may apply with differing requirements.",
+      "detectors": ["\\b(is|irc|astm|bs|iso)\\b.*\\bversus\\b", "\\bconflict\\b.*\\bstandard\\b"]
+    },
+    {
+      "id": "multiple-design-methods",
+      "label": "Multiple Design Methods",
+      "description": "Alternative design approaches exist for this problem.",
+      "detectors": ["\\balternative method\\b", "\\bempirical\\b.*\\banalytical\\b", "\\bmethod a\\b.*\\bmethod b\\b"]
+    },
+    {
+      "id": "version-differences",
+      "label": "Version Differences",
+      "description": "Different code editions or revisions may change requirements.",
+      "detectors": ["\\b\\d{4}\\s+edition\\b", "\\brevision\\b", "\\bamendment\\b", "\\bsuperseded\\b"]
+    },
+    {
+      "id": "regional-differences",
+      "label": "Regional Differences",
+      "description": "National or regional codes may differ from international standards.",
+      "detectors": ["\\bindian\\b.*\\binternational\\b", "\\bnational\\b.*\\bregional\\b", "\\bmorth\\b.*\\baashto\\b"]
+    },
+    {
+      "id": "revision-changes",
+      "label": "Revision Changes",
+      "description": "Recent code revisions may alter design provisions.",
+      "detectors": ["\\blatest revision\\b", "\\bupdated code\\b", "\\bnew clause\\b"]
+    }
+  ],
+  "standardPairs": [
+    { "left": "IS 456", "right": "ACI 318", "conflictType": "regional-differences" },
+    { "left": "IRC 37", "right": "AASHTO", "conflictType": "regional-differences" },
+    { "left": "IRC 58", "right": "AASHTO LRFD", "conflictType": "multiple-design-methods" }
+  ]
+}

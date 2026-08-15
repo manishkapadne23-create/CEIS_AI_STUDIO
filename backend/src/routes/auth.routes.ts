@@ -1,18 +1,14 @@
 import { Router } from "express";
-import { login, register } from "../controllers/auth.controller";
+
+import { login, logout, refresh, register } from "../controllers/auth.controller.js";
+import { loginRateLimiter } from "../middleware/rateLimiter.js";
+import { protect } from "../middleware/auth.middleware.js";
 
 const router = Router();
 
-/**
- * Register User
- * POST /auth/register
- */
 router.post("/register", register);
-
-/**
- * Login User
- * POST /auth/login
- */
-router.post("/login", login);
+router.post("/login", loginRateLimiter, login);
+router.post("/refresh", refresh);
+router.post("/logout", protect, logout);
 
 export default router;

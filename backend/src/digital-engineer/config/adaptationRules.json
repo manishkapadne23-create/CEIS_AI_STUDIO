@@ -1,0 +1,44 @@
+{
+  "version": "1.0.0",
+  "schema": "sarathi-ede-adaptation-v1",
+  "experienceLevelMap": {
+    "0-2": "beginner",
+    "3-5": "intermediate",
+    "6-10": "advanced",
+    "11+": "expert"
+  },
+  "adaptationFactors": [
+    "experience-level",
+    "discipline",
+    "specialization",
+    "current-workspace",
+    "current-project",
+    "previous-decisions"
+  ],
+  "responseAdjustments": {
+    "beginner": {
+      "detailLevel": "high",
+      "includeDefinitions": true,
+      "includeExamples": true,
+      "assumePriorKnowledge": false
+    },
+    "intermediate": {
+      "detailLevel": "medium",
+      "includeDefinitions": false,
+      "includeExamples": true,
+      "assumePriorKnowledge": true
+    },
+    "advanced": {
+      "detailLevel": "concise",
+      "includeDefinitions": false,
+      "includeExamples": false,
+      "assumePriorKnowledge": true
+    },
+    "expert": {
+      "detailLevel": "technical",
+      "includeDefinitions": false,
+      "includeExamples": false,
+      "assumePriorKnowledge": true
+    }
+  }
+}

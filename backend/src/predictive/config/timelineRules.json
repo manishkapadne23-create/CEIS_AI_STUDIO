@@ -1,0 +1,19 @@
+{
+  "version": "1.0.0",
+  "schema": "sarathi-epie-timeline-v1",
+  "activityTypes": [
+    { "id": "next-engineering-activity", "label": "Next Engineering Activity" },
+    { "id": "next-document", "label": "Next Required Document" },
+    { "id": "next-design-step", "label": "Next Design Step" },
+    { "id": "next-inspection", "label": "Next Inspection" },
+    { "id": "next-calculation", "label": "Next Calculation" },
+    { "id": "next-report", "label": "Next Report" }
+  ],
+  "intentTimelineMap": {
+    "design": ["next-design-step", "next-calculation", "next-document"],
+    "calculation": ["next-calculation", "next-design-step", "next-report"],
+    "estimation": ["next-document", "next-report", "next-engineering-activity"],
+    "qa-qc": ["next-inspection", "next-document", "next-report"],
+    "construction": ["next-inspection", "next-engineering-activity", "next-document"]
+  }
+}

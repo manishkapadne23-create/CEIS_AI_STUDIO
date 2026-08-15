@@ -67,3 +67,919 @@ model EngineeringDomain {
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 }
+
+enum EngineeringKnowledgeItemStatus {
+  DRAFT
+  REVIEW
+  PUBLISHED
+  ARCHIVED
+}
+
+/// Master engineering discipline registry for Sarathi AI knowledge framework.
+model EngineeringDiscipline {
+  id           String   @id
+  name         String
+  icon         String?
+  description  String?
+  color        String?
+  active       Boolean  @default(true)
+  displayOrder Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  specializations EngineeringSpecialization[]
+  knowledgeItems  EngineeringKnowledgeItem[]
+  edmEntries      EdmMemoryEntry[]
+
+  @@index([active, displayOrder])
+  @@map("engineering_disciplines")
+}
+
+/// Discipline specialization (e.g. Highway, Structural, HVAC).
+model EngineeringSpecialization {
+  id           String   @id
+  disciplineId String
+  name         String
+  description  String?
+  icon         String?
+  displayOrder Int      @default(0)
+  active       Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  discipline     EngineeringDiscipline    @relation(fields: [disciplineId], references: [id], onDelete: Cascade)
+  knowledgeItems EngineeringKnowledgeItem[]
+  edmEntries     EdmMemoryEntry[]
+
+  @@unique([disciplineId, name])
+  @@index([disciplineId, displayOrder])
+  @@map("engineering_specializations")
+}
+
+/// Universal knowledge categories inherited by every discipline.
+model EngineeringKnowledgeCategory {
+  id           String   @id
+  name         String
+  description  String?
+  displayOrder Int      @default(0)
+  active       Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  knowledgeItems EngineeringKnowledgeItem[]
+  edmEntries     EdmMemoryEntry[]
+
+  @@index([active, displayOrder])
+  @@map("engineering_knowledge_categories")
+}
+
+/// Scalable knowledge document metadata (content stored separately or inline).
+model EngineeringKnowledgeItem {
+  id               String                         @id @default(cuid())
+  title            String
+  disciplineId     String
+  specializationId String?
+  categoryId       String
+  keywords         String[]                       @default([])
+  tags             String[]                       @default([])
+  language         String                         @default("en")
+  version          String                         @default("1.0.0")
+  source           String?
+  status           EngineeringKnowledgeItemStatus @default(DRAFT)
+  content          String?                        @db.Text
+  createdAt        DateTime                       @default(now())
+  updatedAt        DateTime                       @updatedAt
+
+  discipline     EngineeringDiscipline        @relation(fields: [disciplineId], references: [id], onDelete: Cascade)
+  specialization EngineeringSpecialization?   @relation(fields: [specializationId], references: [id], onDelete: SetNull)
+  category       EngineeringKnowledgeCategory @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  searchIndex    EngineeringKnowledgeSearchIndex?
+
+  @@index([disciplineId, categoryId])
+  @@index([specializationId, categoryId])
+  @@index([status, updatedAt])
+  @@map("engineering_knowledge_items")
+}
+
+/// Denormalized search layer for keyword and semantic retrieval.
+model EngineeringKnowledgeSearchIndex {
+  id              String   @id @default(cuid())
+  knowledgeItemId String   @unique
+  searchText      String   @db.Text
+  keywordTokens   String[] @default([])
+  embedding       Json?
+  embeddingModel  String?
+  indexedAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  knowledgeItem EngineeringKnowledgeItem @relation(fields: [knowledgeItemId], references: [id], onDelete: Cascade)
+
+  @@index([keywordTokens], type: Gin)
+  @@map("engineering_knowledge_search_index")
+}
+
+enum EdmMemoryEntryStatus {
+  DRAFT
+  REVIEW
+  PUBLISHED
+  ARCHIVED
+}
+
+enum EdmRelationType {
+  DOCUMENT
+  CALCULATOR
+  STANDARD
+  PROJECT
+}
+
+enum EdmEmbeddingStatus {
+  PENDING
+  PROCESSING
+  READY
+  FAILED
+}
+
+enum EdmAuditAction {
+  CREATE
+  UPDATE
+  DELETE
+  SEARCH
+  INDEX
+  EMBEDDING_REGISTER
+}
+
+/// Engineering Digital Memory — central intelligence repository metadata record.
+model EdmMemoryEntry {
+  id                 String               @id @default(cuid())
+  title              String
+  disciplineId       String
+  specializationId   String?
+  categoryId         String
+  keywords           String[]             @default([])
+  tags               String[]             @default([])
+  summary            String?              @db.Text
+  author             String?
+  organization       String?
+  version            String               @default("1.0.0")
+  source             String?
+  documentDate       DateTime?
+  language           String               @default("en")
+  aiGeneratedSummary String?              @db.Text
+  projectType        String?
+  standardNumbers    String[]             @default([])
+  status             EdmMemoryEntryStatus @default(DRAFT)
+  createdById        String?
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
+
+  discipline     EngineeringDiscipline        @relation(fields: [disciplineId], references: [id], onDelete: Cascade)
+  specialization EngineeringSpecialization? @relation(fields: [specializationId], references: [id], onDelete: SetNull)
+  category       EngineeringKnowledgeCategory @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  outgoingRelations EdmMemoryRelation[]     @relation("EdmRelationSource")
+  incomingRelations EdmMemoryRelation[]     @relation("EdmRelationTarget")
+  documentAssets    EdmDocumentAsset[]
+  searchIndex       EdmSearchIndex?
+  embedding         EdmEmbedding?
+  auditLogs         EdmAuditLog[]
+
+  @@index([disciplineId, categoryId, status])
+  @@index([specializationId, status])
+  @@index([author])
+  @@index([projectType])
+  @@index([documentDate])
+  @@index([standardNumbers], type: Gin)
+  @@index([tags], type: Gin)
+  @@index([keywords], type: Gin)
+  @@map("edm_memory_entries")
+}
+
+/// Typed links between memory entries and external engineering artifacts.
+model EdmMemoryRelation {
+  id            String          @id @default(cuid())
+  sourceEntryId String
+  relationType  EdmRelationType
+  targetEntryId String?
+  externalRef   String?
+  label         String?
+  metadata      Json?
+  displayOrder  Int             @default(0)
+  createdAt     DateTime        @default(now())
+
+  sourceEntry EdmMemoryEntry  @relation("EdmRelationSource", fields: [sourceEntryId], references: [id], onDelete: Cascade)
+  targetEntry EdmMemoryEntry? @relation("EdmRelationTarget", fields: [targetEntryId], references: [id], onDelete: SetNull)
+
+  @@index([sourceEntryId, relationType])
+  @@index([targetEntryId])
+  @@map("edm_memory_relations")
+}
+
+/// Future document asset metadata (PDF, CAD, BIM, etc.) — no binary storage in v1.
+model EdmDocumentAsset {
+  id             String   @id @default(cuid())
+  memoryEntryId  String
+  documentTypeId String
+  fileName       String?
+  mimeType       String?
+  storageUri     String?
+  fileSizeBytes  BigInt?
+  checksum       String?
+  metadata       Json?
+  status         String   @default("registered")
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  memoryEntry EdmMemoryEntry @relation(fields: [memoryEntryId], references: [id], onDelete: Cascade)
+
+  @@index([memoryEntryId, documentTypeId])
+  @@map("edm_document_assets")
+}
+
+/// Denormalized global search index for keyword retrieval.
+model EdmSearchIndex {
+  id            String   @id @default(cuid())
+  memoryEntryId String   @unique
+  searchText    String   @db.Text
+  keywordTokens String[] @default([])
+  indexedAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  memoryEntry EdmMemoryEntry @relation(fields: [memoryEntryId], references: [id], onDelete: Cascade)
+
+  @@index([keywordTokens], type: Gin)
+  @@map("edm_search_index")
+}
+
+/// Embedding pipeline architecture — vectors stored when available; no LLM in v1.
+model EdmEmbedding {
+  id            String             @id @default(cuid())
+  memoryEntryId String             @unique
+  vector        Json?
+  dimensions    Int?
+  modelId       String?
+  modelVersion  String?
+  status        EdmEmbeddingStatus @default(PENDING)
+  errorMessage  String?
+  createdAt     DateTime           @default(now())
+  updatedAt     DateTime           @updatedAt
+
+  memoryEntry EdmMemoryEntry @relation(fields: [memoryEntryId], references: [id], onDelete: Cascade)
+
+  @@index([status, updatedAt])
+  @@map("edm_embeddings")
+}
+
+/// Enterprise audit trail for EDM operations.
+model EdmAuditLog {
+  id            String         @id @default(cuid())
+  memoryEntryId String?
+  action        EdmAuditAction
+  actorId       String?
+  actorEmail    String?
+  ipAddress     String?
+  userAgent     String?
+  metadata      Json?
+  createdAt     DateTime       @default(now())
+
+  memoryEntry EdmMemoryEntry? @relation(fields: [memoryEntryId], references: [id], onDelete: SetNull)
+
+  @@index([action, createdAt])
+  @@index([memoryEntryId, createdAt])
+  @@index([actorId, createdAt])
+  @@map("edm_audit_logs")
+}
+
+enum EvidenceTrustLevel {
+  VERIFIED
+  HIGH_CONFIDENCE
+  MEDIUM_CONFIDENCE
+  LOW_CONFIDENCE
+  INSUFFICIENT_EVIDENCE
+}
+
+enum EvidenceCitationType {
+  ENGINEERING_STANDARD
+  CLAUSE_REFERENCE
+  DESIGN_MANUAL
+  SPECIFICATION
+  RESEARCH_PAPER
+  COMPANY_KNOWLEDGE
+  USER_DOCUMENT
+  AI_GENERATED
+}
+
+/// Audit trail for engineering evidence and citation usage.
+model EvidenceAuditLog {
+  id              String              @id @default(cuid())
+  conversationId  String?
+  userMessage     String?             @db.Text
+  aiProvider      String?
+  aiModel         String?
+  trustLevel      EvidenceTrustLevel?
+  confidenceScore Float?
+  evidenceCount   Int                 @default(0)
+  citationCount   Int                 @default(0)
+  knowledgeSources String[]           @default([])
+  evidenceUsed    Json?
+  actorId         String?
+  ipAddress       String?
+  userAgent       String?
+  metadata        Json?
+  createdAt       DateTime            @default(now())
+
+  @@index([trustLevel, createdAt])
+  @@index([conversationId, createdAt])
+  @@index([actorId, createdAt])
+  @@map("evidence_audit_logs")
+}
+
+/// Per-user predictive intelligence preferences (privacy controls).
+model PredictiveUserPreferences {
+  id                    String   @id @default(cuid())
+  userId                String   @unique
+  predictiveEnabled     Boolean  @default(true)
+  recommendationsEnabled Boolean @default(true)
+  timelineEnabled       Boolean  @default(true)
+  remindersEnabled      Boolean  @default(true)
+  riskPredictionEnabled Boolean  @default(true)
+  learningPredictionEnabled Boolean @default(true)
+  projectAwarenessEnabled Boolean @default(true)
+  aiCoachEnabled        Boolean  @default(true)
+  shareBehaviorData     Boolean  @default(false)
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  insightLogs PredictiveInsightLog[]
+
+  @@map("predictive_user_preferences")
+}
+
+enum PredictiveInsightType {
+  RECOMMENDATION
+  TIMELINE
+  REMINDER
+  RISK
+  LEARNING
+  PROJECT
+  COACH
+}
+
+/// Private audit log for generated predictive insights.
+model PredictiveInsightLog {
+  id           String                @id @default(cuid())
+  userId       String
+  insightType  PredictiveInsightType
+  title        String
+  summary      String?               @db.Text
+  confidence   Float?
+  payload      Json?
+  createdAt    DateTime              @default(now())
+
+  preferences PredictiveUserPreferences @relation(fields: [userId], references: [userId], onDelete: Cascade)
+
+  @@index([userId, insightType, createdAt])
+  @@map("predictive_insight_logs")
+}
+
+// ---------------------------------------------------------------------------
+// Engineering Workspace Intelligence (EWI)
+// ---------------------------------------------------------------------------
+
+enum EngineeringWorkspaceType {
+  PERSONAL
+  PROJECT
+  DISCIPLINE
+  SPECIALIZATION
+  INSTITUTION
+  ENTERPRISE
+}
+
+enum EngineeringWorkspaceStatus {
+  ACTIVE
+  ARCHIVED
+  DELETED
+}
+
+enum EngineeringWorkspaceItemType {
+  AI_CONVERSATION
+  ENGINEERING_DOCUMENT
+  STANDARD
+  CALCULATION
+  REPORT
+  TEMPLATE
+  CHECKLIST
+  NOTE
+  BOOKMARK
+  ENGINEERING_DECISION
+  ENGINEERING_EVIDENCE
+  GENERATED_FILE
+}
+
+enum EngineeringWorkspaceItemStatus {
+  DRAFT
+  ACTIVE
+  COMPLETED
+  ARCHIVED
+}
+
+/// User-owned engineering workspace — personal, project, discipline, etc.
+model EngineeringWorkspace {
+  id               String                     @id @default(cuid())
+  userId           String
+  workspaceType    EngineeringWorkspaceType
+  name             String
+  slug             String
+  description      String?                    @db.Text
+  disciplineId     String?
+  specializationId String?
+  projectId        String?
+  projectName      String?
+  clientName       String?
+  institutionId    String?
+  enterpriseId     String?
+  topic            String?
+  tags             String[]                   @default([])
+  status           EngineeringWorkspaceStatus @default(ACTIVE)
+  isPinned         Boolean                    @default(false)
+  isFavourite      Boolean                    @default(false)
+  isShared         Boolean                    @default(false)
+  version          Int                        @default(1)
+  metadata         Json?
+  lastActivityAt   DateTime                   @default(now())
+  createdAt        DateTime                   @default(now())
+  updatedAt        DateTime                   @updatedAt
+  archivedAt       DateTime?
+  deletedAt        DateTime?
+
+  items      EngineeringWorkspaceItem[]
+  versions   EngineeringWorkspaceVersion[]
+  searchIndex EngineeringWorkspaceSearchIndex?
+  access     EngineeringWorkspaceAccess[]
+  syncState  EngineeringWorkspaceSyncState?
+  activities EngineeringWorkspaceActivity[]
+
+  @@unique([userId, slug])
+  @@index([userId, status, lastActivityAt])
+  @@index([userId, workspaceType])
+  @@index([disciplineId, specializationId])
+  @@index([projectId])
+  @@index([tags], type: Gin)
+  @@map("engineering_workspaces")
+}
+
+/// Content stored inside an engineering workspace.
+model EngineeringWorkspaceItem {
+  id               String                       @id @default(cuid())
+  workspaceId      String
+  itemType         EngineeringWorkspaceItemType
+  title            String
+  summary          String?                      @db.Text
+  content          Json?
+  externalRef      String?
+  disciplineId     String?
+  specializationId String?
+  topic            String?
+  tags             String[]                     @default([])
+  status           EngineeringWorkspaceItemStatus @default(ACTIVE)
+  version          Int                          @default(1)
+  isDraft          Boolean                      @default(false)
+  isComplete       Boolean                      @default(false)
+  displayOrder     Int                          @default(0)
+  metadata         Json?
+  createdAt        DateTime                     @default(now())
+  updatedAt        DateTime                     @updatedAt
+
+  workspace EngineeringWorkspace              @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  versions  EngineeringWorkspaceItemVersion[]
+
+  @@index([workspaceId, itemType, updatedAt])
+  @@index([workspaceId, status])
+  @@index([tags], type: Gin)
+  @@map("engineering_workspace_items")
+}
+
+/// Workspace-level revision history.
+model EngineeringWorkspaceVersion {
+  id            String   @id @default(cuid())
+  workspaceId   String
+  versionNumber Int
+  snapshot      Json
+  changeSummary String?
+  createdBy     String?
+  createdAt     DateTime @default(now())
+
+  workspace EngineeringWorkspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+
+  @@unique([workspaceId, versionNumber])
+  @@map("engineering_workspace_versions")
+}
+
+/// Item-level revision history.
+model EngineeringWorkspaceItemVersion {
+  id            String   @id @default(cuid())
+  itemId        String
+  versionNumber Int
+  title         String
+  content       Json?
+  snapshot      Json?
+  changeSummary String?
+  createdBy     String?
+  createdAt     DateTime @default(now())
+
+  item EngineeringWorkspaceItem @relation(fields: [itemId], references: [id], onDelete: Cascade)
+
+  @@unique([itemId, versionNumber])
+  @@map("engineering_workspace_item_versions")
+}
+
+/// Denormalized search index for workspace global search.
+model EngineeringWorkspaceSearchIndex {
+  id            String   @id @default(cuid())
+  workspaceId   String   @unique
+  searchText    String   @db.Text
+  keywordTokens String[] @default([])
+  indexedAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  workspace EngineeringWorkspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+
+  @@index([keywordTokens], type: Gin)
+  @@map("engineering_workspace_search_index")
+}
+
+/// Sharing and quick-access preferences per user.
+model EngineeringWorkspaceAccess {
+  id          String   @id @default(cuid())
+  workspaceId String
+  userId      String
+  role        String   @default("viewer")
+  isPinned    Boolean  @default(false)
+  isFavourite Boolean  @default(false)
+  grantedAt   DateTime @default(now())
+
+  workspace EngineeringWorkspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+
+  @@unique([workspaceId, userId])
+  @@index([userId, isPinned])
+  @@map("engineering_workspace_access")
+}
+
+/// Sync architecture — cross-device, offline, cloud backup (future-ready).
+model EngineeringWorkspaceSyncState {
+  id                   String    @id @default(cuid())
+  workspaceId          String    @unique
+  lastSyncedAt         DateTime?
+  syncVersion          Int       @default(0)
+  cloudBackupEnabled   Boolean   @default(false)
+  offlineEnabled       Boolean   @default(false)
+  enterpriseStorageUri String?
+  metadata             Json?
+  updatedAt            DateTime  @updatedAt
+
+  workspace EngineeringWorkspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+
+  @@map("engineering_workspace_sync_state")
+}
+
+/// Activity log for recent workspace actions.
+model EngineeringWorkspaceActivity {
+  id          String   @id @default(cuid())
+  workspaceId String
+  userId      String?
+  action      String
+  itemId      String?
+  summary     String?
+  metadata    Json?
+  createdAt   DateTime @default(now())
+
+  workspace EngineeringWorkspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+
+  @@index([workspaceId, createdAt])
+  @@index([userId, createdAt])
+  @@map("engineering_workspace_activities")
+}
+
+// ---------------------------------------------------------------------------
+// Engineering Multi-Agent Collaboration Engine (EMACE)
+// ---------------------------------------------------------------------------
+
+enum EmaceCollaborationEventType {
+  REQUEST_ANALYZED
+  AGENT_EXECUTED
+  AGENT_COLLABORATION
+  CONFLICT_DETECTED
+  CONFLICT_RESOLVED
+  RESPONSE_COMPOSED
+}
+
+/// Per-user multi-agent collaboration preferences and controls.
+model EmaceUserPreferences {
+  id                 String   @id @default(cuid())
+  userId             String   @unique
+  multiAgentEnabled  Boolean  @default(true)
+  manualMode         Boolean  @default(false)
+  enabledAgentIds    String[] @default([])
+  disabledAgentIds   String[] @default([])
+  subscriptionPlan   String   @default("free")
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  @@map("emace_user_preferences")
+}
+
+/// Audit trail for multi-agent collaboration sessions.
+model EmaceCollaborationAuditLog {
+  id             String                      @id @default(cuid())
+  userId         String?
+  conversationId String?
+  eventType      EmaceCollaborationEventType
+  agentId        String?
+  summary        String?                     @db.Text
+  payload        Json?
+  ipAddress      String?
+  userAgent      String?
+  createdAt      DateTime                    @default(now())
+
+  @@index([userId, createdAt])
+  @@index([conversationId, createdAt])
+  @@index([eventType, createdAt])
+  @@map("emace_collaboration_audit_logs")
+}
+
+// ---------------------------------------------------------------------------
+// Engineering Digital Engineer (EDE)
+// ---------------------------------------------------------------------------
+
+enum EdEngineerInsightType {
+  WEEKLY_SUMMARY
+  MONTHLY_LEARNING
+  SKILL_GROWTH
+  ACTIVITY_REPORT
+}
+
+enum EdEngineerActivitySignalType {
+  STANDARD
+  CALCULATOR
+  TEMPLATE
+  REPORT
+  TOPIC
+  AGENT
+  WORKFLOW
+  DOCUMENT
+  CLAUSE
+}
+
+/// Personalized digital engineering profile per user.
+model EdEngineerProfile {
+  id                     String   @id @default(cuid())
+  userId                 String   @unique
+  primaryDisciplineId    String?
+  primaryDisciplineName  String?
+  secondaryDisciplineId  String?
+  secondaryDisciplineName String?
+  specializationIds      String[] @default([])
+  specializationNames    String[] @default([])
+  yearsOfExperience      Int?
+  industry               String?
+  preferredStandards     String[] @default([])
+  preferredDesignMethods String[] @default([])
+  preferredUnits         String   @default("metric")
+  preferredSoftware      String[] @default([])
+  languagePreferences    String[] @default(["en"])
+  workingStyle           Json?
+  expertise              Json?
+  personalLibrary        Json?
+  learningEnabled        Boolean  @default(true)
+  metadata               Json?
+  lastActivityAt         DateTime @default(now())
+  createdAt              DateTime @default(now())
+  updatedAt              DateTime @updatedAt
+
+  activitySignals EdEngineerActivitySignal[]
+  insightLogs     EdEngineerInsightLog[]
+
+  @@map("ed_engineer_profiles")
+}
+
+/// Learned activity signals for working-style personalization.
+model EdEngineerActivitySignal {
+  id            String                      @id @default(cuid())
+  userId        String
+  signalType    EdEngineerActivitySignalType
+  resourceId    String?
+  resourceLabel String?
+  disciplineId  String?
+  usageCount    Int                         @default(1)
+  lastUsedAt    DateTime                    @default(now())
+  createdAt     DateTime                    @default(now())
+
+  profile EdEngineerProfile @relation(fields: [userId], references: [userId], onDelete: Cascade)
+
+  @@unique([userId, signalType, resourceId])
+  @@index([userId, signalType, lastUsedAt])
+  @@map("ed_engineer_activity_signals")
+}
+
+/// Generated engineering insights and reports.
+model EdEngineerInsightLog {
+  id          String                @id @default(cuid())
+  userId      String
+  insightType EdEngineerInsightType
+  title       String
+  summary     String?               @db.Text
+  payload     Json?
+  createdAt   DateTime              @default(now())
+
+  profile EdEngineerProfile @relation(fields: [userId], references: [userId], onDelete: Cascade)
+
+  @@index([userId, insightType, createdAt])
+  @@map("ed_engineer_insight_logs")
+}
+
+// ---------------------------------------------------------------------------
+// Engineering Simulation & Scenario Analysis Engine (ESSAE)
+// ---------------------------------------------------------------------------
+
+enum EssaeScenarioType {
+  DESIGN_ALTERNATIVES
+  MATERIAL_ALTERNATIVES
+  CONSTRUCTION_METHODS
+  EQUIPMENT_SELECTION
+  TECHNOLOGY_COMPARISON
+  COST_SCENARIOS
+  SCHEDULE_SCENARIOS
+  RISK_SCENARIOS
+  ENVIRONMENTAL_SCENARIOS
+  MAINTENANCE_SCENARIOS
+}
+
+enum EssaeScenarioStatus {
+  DRAFT
+  ACTIVE
+  COMPARED
+  ARCHIVED
+}
+
+/// Engineering simulation workspace container.
+model EssaeSimulationWorkspace {
+  id                 String   @id @default(cuid())
+  userId             String
+  name               String
+  slug               String
+  description        String?  @db.Text
+  disciplineId       String?
+  disciplineName     String?
+  specializationId   String?
+  specializationName String?
+  projectId          String?
+  projectName        String?
+  status             String   @default("active")
+  metadata           Json?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  scenarios EssaeScenario[]
+
+  @@unique([userId, slug])
+  @@index([userId, updatedAt])
+  @@index([disciplineId])
+  @@map("essae_simulation_workspaces")
+}
+
+/// Individual engineering scenario with options and assumptions.
+model EssaeScenario {
+  id               String              @id @default(cuid())
+  workspaceId      String
+  userId           String
+  title            String
+  scenarioType     EssaeScenarioType
+  disciplineId     String?
+  disciplineName     String?
+  description      String?             @db.Text
+  assumptions      Json?
+  parameters       Json?
+  options          Json
+  status           EssaeScenarioStatus @default(DRAFT)
+  version          Int                 @default(1)
+  parentScenarioId String?
+  results          Json?
+  metadata         Json?
+  createdAt        DateTime            @default(now())
+  updatedAt        DateTime            @updatedAt
+
+  workspace EssaeSimulationWorkspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+
+  @@index([workspaceId, scenarioType])
+  @@index([userId, updatedAt])
+  @@map("essae_scenarios")
+}
+
+/// Saved scenario comparison runs.
+model EssaeScenarioComparison {
+  id               String   @id @default(cuid())
+  userId           String
+  workspaceId      String?
+  title            String
+  scenarioIds      String[]
+  comparisonMatrix Json
+  results          Json
+  createdAt        DateTime @default(now())
+
+  @@index([userId, createdAt])
+  @@index([workspaceId, createdAt])
+  @@map("essae_scenario_comparisons")
+}
+
+// ---------------------------------------------------------------------------
+// Enterprise Security, IP Protection & Anti-Reverse Engineering (ESIPF)
+// ---------------------------------------------------------------------------
+
+enum LicenseTier {
+  FREE
+  STANDARD
+  PRO
+  PRO_PLUS
+  INSTITUTION
+  ENTERPRISE
+}
+
+enum SecurityAuditCategory {
+  AUTH
+  AI
+  DOCUMENT
+  SUBSCRIPTION
+  WALLET
+  ADMIN
+  API
+  SECURITY
+}
+
+model RefreshToken {
+  id        String    @id @default(cuid())
+  userId    String
+  tokenHash String    @unique
+  expiresAt DateTime
+  revokedAt DateTime?
+  userAgent String?
+  ipAddress String?
+  createdAt DateTime  @default(now())
+
+  @@index([userId])
+  @@index([expiresAt])
+  @@map("refresh_tokens")
+}
+
+model UserLicense {
+  id         String      @id @default(cuid())
+  userId     String      @unique
+  tenantId   String?
+  tier       LicenseTier @default(FREE)
+  features   Json?
+  validFrom  DateTime    @default(now())
+  validUntil DateTime?
+  offlineKey String?
+  metadata   Json?
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+
+  @@index([tenantId])
+  @@index([tier])
+  @@map("user_licenses")
+}
+
+model SecurityAuditLog {
+  id            String                @id @default(cuid())
+  category      SecurityAuditCategory
+  eventType     String
+  userId        String?
+  tenantId      String?
+  actorId       String?
+  resource      String?
+  resourceId    String?
+  ipAddress     String?
+  userAgent     String?
+  status        String                @default("success")
+  metadata      Json?
+  integrityHash String?
+  createdAt     DateTime              @default(now())
+
+  @@index([userId, createdAt])
+  @@index([category, createdAt])
+  @@index([eventType, createdAt])
+  @@map("security_audit_logs")
+}
+
+model SecurityEvent {
+  id          String   @id @default(cuid())
+  eventType   String
+  severity    String   @default("info")
+  sourceIp    String?
+  userId      String?
+  description String
+  metadata    Json?
+  resolved    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+
+  @@index([eventType, createdAt])
+  @@index([severity, resolved])
+  @@map("security_events")
+}

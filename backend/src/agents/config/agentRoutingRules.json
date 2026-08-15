@@ -1,0 +1,61 @@
+{
+  "version": "1.0.0",
+  "schema": "sarathi-emace-routing-v1",
+  "intentAgentMap": {
+    "design": ["engineering-expert", "design-expert", "standards-expert", "calculation-expert", "safety-expert", "qa-qc-expert"],
+    "calculation": ["engineering-expert", "calculation-expert", "standards-expert", "design-expert"],
+    "code-search": ["standards-expert", "engineering-expert", "document-expert"],
+    "estimation": ["estimation-expert", "engineering-expert", "calculation-expert", "document-expert"],
+    "tender": ["tender-expert", "contract-expert", "estimation-expert", "document-expert"],
+    "contract": ["contract-expert", "tender-expert", "risk-expert", "document-expert"],
+    "learning": ["learning-expert", "research-expert", "engineering-expert"],
+    "research": ["research-expert", "engineering-expert", "standards-expert"],
+    "decision-support": ["engineering-expert", "risk-expert", "design-expert", "standards-expert"],
+    "question": ["engineering-expert", "standards-expert", "research-expert"]
+  },
+  "keywordAgentMap": [
+    {
+      "patterns": ["highway", "four-lane", "four lane", "road design", "pavement"],
+      "agents": ["design-expert", "standards-expert", "calculation-expert", "safety-expert", "estimation-expert", "qa-qc-expert"],
+      "disciplineId": "civil-engineering",
+      "disciplineName": "Civil Engineering",
+      "specializationId": "transportation-engineering",
+      "specializationName": "Transportation Engineering"
+    },
+    {
+      "patterns": ["bridge", "span", "superstructure"],
+      "agents": ["design-expert", "calculation-expert", "standards-expert", "safety-expert", "construction-expert"],
+      "disciplineId": "civil-engineering",
+      "disciplineName": "Civil Engineering",
+      "specializationId": "bridge-engineering",
+      "specializationName": "Bridge Engineering"
+    },
+    {
+      "patterns": ["foundation", "geotechnical", "soil", "borehole"],
+      "agents": ["design-expert", "calculation-expert", "standards-expert", "risk-expert"],
+      "disciplineId": "civil-engineering",
+      "disciplineName": "Civil Engineering",
+      "specializationId": "geotechnical-engineering",
+      "specializationName": "Geotechnical Engineering"
+    },
+    {
+      "patterns": ["construction", "site execution", "method statement"],
+      "agents": ["construction-expert", "safety-expert", "qa-qc-expert", "planning-expert"],
+      "disciplineId": "civil-engineering",
+      "disciplineName": "Civil Engineering"
+    },
+    {
+      "patterns": ["tender", "bid", "rfp", "e-tender"],
+      "agents": ["tender-expert", "estimation-expert", "contract-expert", "document-expert"]
+    },
+    {
+      "patterns": ["contract", "claim", "variation", "eot"],
+      "agents": ["contract-expert", "risk-expert", "document-expert", "estimation-expert"]
+    },
+    {
+      "patterns": ["schedule", "planning", "milestone", "critical path"],
+      "agents": ["planning-expert", "construction-expert", "risk-expert"]
+    }
+  ],
+  "defaultAgents": ["engineering-expert", "standards-expert", "design-expert"]
+}

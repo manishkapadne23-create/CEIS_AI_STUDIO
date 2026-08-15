@@ -1,0 +1,16 @@
+{
+  "version": "1.0.0",
+  "schema": "sarathi-essae-scenario-types-v1",
+  "scenarioTypes": [
+    { "id": "DESIGN_ALTERNATIVES", "label": "Design Alternatives", "enumValue": "DESIGN_ALTERNATIVES" },
+    { "id": "MATERIAL_ALTERNATIVES", "label": "Material Alternatives", "enumValue": "MATERIAL_ALTERNATIVES" },
+    { "id": "CONSTRUCTION_METHODS", "label": "Construction Methods", "enumValue": "CONSTRUCTION_METHODS" },
+    { "id": "EQUIPMENT_SELECTION", "label": "Equipment Selection", "enumValue": "EQUIPMENT_SELECTION" },
+    { "id": "TECHNOLOGY_COMPARISON", "label": "Technology Comparison", "enumValue": "TECHNOLOGY_COMPARISON" },
+    { "id": "COST_SCENARIOS", "label": "Cost Scenarios", "enumValue": "COST_SCENARIOS" },
+    { "id": "SCHEDULE_SCENARIOS", "label": "Schedule Scenarios", "enumValue": "SCHEDULE_SCENARIOS" },
+    { "id": "RISK_SCENARIOS", "label": "Risk Scenarios", "enumValue": "RISK_SCENARIOS" },
+    { "id": "ENVIRONMENTAL_SCENARIOS", "label": "Environmental Scenarios", "enumValue": "ENVIRONMENTAL_SCENARIOS" },
+    { "id": "MAINTENANCE_SCENARIOS", "label": "Maintenance Scenarios", "enumValue": "MAINTENANCE_SCENARIOS" }
+  ]
+}

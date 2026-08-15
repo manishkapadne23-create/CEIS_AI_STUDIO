@@ -1,0 +1,14 @@
+{
+  "version": "1.0.0",
+  "schema": "sarathi-epie-reminders-v1",
+  "reminderTypes": [
+    { "id": "new-standards", "label": "New Standards", "category": "standards" },
+    { "id": "code-revisions", "label": "Code Revisions", "category": "standards" },
+    { "id": "engineering-alerts", "label": "Engineering Alerts", "category": "alerts" },
+    { "id": "tender-opportunities", "label": "Tender Opportunities", "category": "business" },
+    { "id": "training-programs", "label": "Training Programs", "category": "learning" },
+    { "id": "certification-expiry", "label": "Certification Expiry", "category": "learning" },
+    { "id": "software-updates", "label": "Software Updates", "category": "system" },
+    { "id": "upcoming-webinars", "label": "Upcoming Webinars", "category": "learning" }
+  ]
+}

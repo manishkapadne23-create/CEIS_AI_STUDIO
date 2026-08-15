@@ -1,0 +1,352 @@
+{
+  "version": "1.0.0",
+  "schema": "sarathi-edm-sample-entries-v1",
+  "entries": [
+    {
+      "id": "edm-seed-civil-engineering",
+      "title": "Civil Engineering Digital Memory — Standards & Codes Index",
+      "disciplineId": "civil-engineering",
+      "categoryId": "standards-codes",
+      "keywords": ["civil", "standards", "codes", "is", "irc"],
+      "tags": ["seed", "edm", "reference"],
+      "summary": "Metadata index for civil engineering standards and codes.",
+      "author": "Sarathi AI Knowledge Team",
+      "organization": "CEIS AI Studio",
+      "version": "1.0.0",
+      "source": "Sarathi EDM Seed",
+      "language": "en",
+      "projectType": "highway",
+      "standardNumbers": ["IS 456", "IRC 37"],
+      "status": "PUBLISHED",
+      "relations": [
+        { "relationType": "STANDARD", "externalRef": "IS 456:2000", "label": "Plain and Reinforced Concrete" },
+        { "relationType": "PROJECT", "externalRef": "NH-44-upgrade", "label": "National Highway Upgrade" }
+      ],
+      "documentAssets": [
+        { "documentTypeId": "pdf", "fileName": "civil-standards-index.pdf", "status": "registered" }
+      ]
+    },
+    {
+      "id": "edm-seed-mechanical-engineering",
+      "title": "Mechanical Engineering Digital Memory — Design Manuals",
+      "disciplineId": "mechanical-engineering",
+      "categoryId": "design-manuals",
+      "keywords": ["mechanical", "design", "manual", "hvac"],
+      "tags": ["seed", "edm"],
+      "summary": "Metadata index for mechanical design manuals.",
+      "author": "Sarathi AI Knowledge Team",
+      "organization": "CEIS AI Studio",
+      "version": "1.0.0",
+      "source": "Sarathi EDM Seed",
+      "language": "en",
+      "projectType": "industrial-plant",
+      "standardNumbers": ["ASME B31.3"],
+      "status": "PUBLISHED",
+      "relations": [
+        { "relationType": "CALCULATOR", "externalRef": "hvac-load-calculator", "label": "HVAC Load Calculator" }
+      ],
+      "documentAssets": [
+        { "documentTypeId": "word", "fileName": "mechanical-design-manual.docx", "status": "registered" }
+      ]
+    },
+    {
+      "id": "edm-seed-electrical-engineering",
+      "title": "Electrical Engineering Digital Memory — Specifications",
+      "disciplineId": "electrical-engineering",
+      "categoryId": "specifications",
+      "keywords": ["electrical", "specifications", "power"],
+      "tags": ["seed", "edm"],
+      "summary": "Metadata index for electrical specifications.",
+      "author": "Sarathi AI Knowledge Team",
+      "organization": "CEIS AI Studio",
+      "version": "1.0.0",
+      "source": "Sarathi EDM Seed",
+      "language": "en",
+      "projectType": "power-plant",
+      "standardNumbers": ["IEC 60364"],
+      "status": "PUBLISHED",
+      "documentAssets": [
+        { "documentTypeId": "excel", "fileName": "electrical-spec-matrix.xlsx", "status": "registered" }
+      ]
+    },
+    {
+      "id": "edm-seed-computer-engineering",
+      "title": "Computer Engineering Digital Memory — Technical Papers",
+      "disciplineId": "computer-engineering",
+      "categoryId": "technical-papers",
+      "keywords": ["computer", "ai", "software"],
+      "tags": ["seed", "edm"],
+      "summary": "Metadata index for computer engineering technical papers.",
+      "author": "Sarathi AI Knowledge Team",
+      "organization": "CEIS AI Studio",
+      "version": "1.0.0",
+      "source": "Sarathi EDM Seed",
+      "language": "en",
+      "projectType": "research",
+      "status": "PUBLISHED",
+      "documentAssets": [
+        { "documentTypeId": "pdf", "fileName": "ai-systems-survey.pdf", "status": "registered" }
+      ]
+    },
+    {
+      "id": "edm-seed-electronics-telecommunication-engineering",
+      "title": "Electronics & Telecommunication Digital Memory — Standards",
+      "disciplineId": "electronics-telecommunication-engineering",
+      "categoryId": "standards-codes",
+      "keywords": ["electronics", "telecommunication", "standards"],
+      "tags": ["seed", "edm"],
+      "summary": "Metadata index for electronics and telecommunication standards.",
+      "author": "Sarathi AI Knowledge Team",
+      "organization": "CEIS AI Studio",
+      "version": "1.0.0",
+      "source": "Sarathi EDM Seed",
+      "language": "en",
+      "projectType": "research",
+      "standardNumbers": ["IEEE 802.11"],
+      "status": "PUBLISHED",
+      "documentAssets": []
+    },
+    {
+      "id": "edm-seed-chemical-engineering",
+      "title": "Chemical Engineering Digital Memory — Safety",
+      "disciplineId": "chemical-engineering",
+      "categoryId": "safety",
+      "keywords": ["chemical", "safety", "process"],
+      "tags": ["seed", "edm"],
+      "summary": "Metadata index for chemical process safety guidance.",
+      "author": "Sarathi AI Knowledge Team",
+      "organization": "CEIS AI Studio",
+      "version": "1.0.0",
+      "source": "Sarathi EDM Seed",
+      "language": "en",
+      "projectType": "industrial-plant",
+      "standardNumbers": ["OSHA 1910"],
+      "status": "PUBLISHED",
+      "documentAssets": [
+        { "documentTypeId": "pdf", "fileName": "process-safety-overview.pdf", "status": "registered" }
+      ]
+    },
+    {
+      "id": "edm-seed-environmental-engineering",
+      "title": "Environmental Engineering Digital Memory — Case Studies",
+      "disciplineId": "environmental-engineering",
+      "categoryId": "case-studies",
+      "keywords": ["environmental", "case-study", "water"],
+      "tags": ["seed", "edm"],
+      "summary": "Metadata index for environmental engineering case studies.",
+      "author": "Sarathi AI Knowledge Team",
+      "organization": "CEIS AI Studio",
+      "version": "1.0.0",
+      "source": "Sarathi EDM Seed",
+      "language": "en",
+      "projectType": "water-treatment",
+      "status": "PUBLISHED",
+      "documentAssets": []
+    },
+    {
+      "id": "edm-seed-mining-engineering",
+      "title": "Mining Engineering Digital Memory — Construction Methodology",
+      "disciplineId": "mining-engineering",
+      "categoryId": "construction-methodology",
+      "keywords": ["mining", "construction", "methodology"],
+      "tags": ["seed", "edm"],
+      "summary": "Metadata index for mining construction methodology.",
+      "author": "Sarathi AI Knowledge Team",
+      "organization": "CEIS AI Studio",
+      "version": "1.0.0",
+      "source": "Sarathi EDM Seed",
+      "language": "en",
+      "projectType": "mining",
+      "status": "PUBLISHED",
+      "documentAssets": [
+        { "documentTypeId": "cad-drawing", "fileName": "mine-layout.dwg", "status": "registered" }
+      ]
+    },
+    {
+      "id": "edm-seed-marine-engineering",
+      "title": "Marine Engineering Digital Memory — Standard Drawings",
+      "disciplineId": "marine-engineering",
+      "categoryId": "standard-drawings",
+      "keywords": ["marine", "drawings", "ship"],
+      "tags": ["seed", "edm"],
+      "summary": "Metadata index for marine standard drawings.",
+      "author": "Sarathi AI Knowledge Team",
+      "organization": "CEIS AI Studio",
+      "version": "1.0.0",
+      "source": "Sarathi EDM Seed",
+      "language": "en",
+      "projectType": "port-marine",
+      "status": "PUBLISHED",
+      "documentAssets": [
+        { "documentTypeId": "cad-drawing", "fileName": "hull-section.dwg", "status": "registered" }
+      ]
+    },
+    {
+      "id": "edm-seed-aerospace-engineering",
+      "title": "Aerospace Engineering Digital Memory — Calculators",
+      "disciplineId": "aerospace-engineering",
+      "categoryId": "engineering-calculators",
+      "keywords": ["aerospace", "calculators", "flight"],
+      "tags": ["seed", "edm"],
+      "summary": "Metadata index for aerospace engineering calculators.",
+      "author": "Sarathi AI Knowledge Team",
+      "organization": "CEIS AI Studio",
+      "version": "1.0.0",
+      "source": "Sarathi EDM Seed",
+      "language": "en",
+      "projectType": "research",
+      "status": "PUBLISHED",
+      "relations": [
+        { "relationType": "CALCULATOR", "externalRef": "lift-drag-calculator", "label": "Lift-Drag Calculator" }
+      ],
+      "documentAssets": []
+    },
+    {
+      "id": "edm-seed-railway-engineering",
+      "title": "Railway Engineering Digital Memory — Checklists",
+      "disciplineId": "railway-engineering",
+      "categoryId": "checklists",
+      "keywords": ["railway", "checklist", "track"],
+      "tags": ["seed", "edm"],
+      "summary": "Metadata index for railway engineering checklists.",
+      "author": "Sarathi AI Knowledge Team",
+      "organization": "CEIS AI Studio",
+      "version": "1.0.0",
+      "source": "Sarathi EDM Seed",
+      "language": "en",
+      "projectType": "metro-rail",
+      "status": "PUBLISHED",
+      "documentAssets": []
+    },
+    {
+      "id": "edm-seed-industrial-engineering",
+      "title": "Industrial Engineering Digital Memory — QA/QC",
+      "disciplineId": "industrial-engineering",
+      "categoryId": "qa-qc",
+      "keywords": ["industrial", "qa", "qc"],
+      "tags": ["seed", "edm"],
+      "summary": "Metadata index for industrial QA/QC procedures.",
+      "author": "Sarathi AI Knowledge Team",
+      "organization": "CEIS AI Studio",
+      "version": "1.0.0",
+      "source": "Sarathi EDM Seed",
+      "language": "en",
+      "projectType": "industrial-plant",
+      "status": "PUBLISHED",
+      "documentAssets": []
+    },
+    {
+      "id": "edm-seed-automation-robotics",
+      "title": "Automation & Robotics Digital Memory — Specifications",
+      "disciplineId": "automation-robotics",
+      "categoryId": "specifications",
+      "keywords": ["automation", "robotics", "plc"],
+      "tags": ["seed", "edm"],
+      "summary": "Metadata index for automation and robotics specifications.",
+      "author": "Sarathi AI Knowledge Team",
+      "organization": "CEIS AI Studio",
+      "version": "1.0.0",
+      "source": "Sarathi EDM Seed",
+      "language": "en",
+      "projectType": "industrial-plant",
+      "status": "PUBLISHED",
+      "documentAssets": [
+        { "documentTypeId": "bim-model", "fileName": "factory-line.ifc", "status": "registered" }
+      ]
+    },
+    {
+      "id": "edm-seed-renewable-energy",
+      "title": "Renewable Energy Digital Memory — BOQ & Estimation",
+      "disciplineId": "renewable-energy",
+      "categoryId": "boq-estimation",
+      "keywords": ["renewable", "boq", "solar", "wind"],
+      "tags": ["seed", "edm"],
+      "summary": "Metadata index for renewable energy BOQ and estimation.",
+      "author": "Sarathi AI Knowledge Team",
+      "organization": "CEIS AI Studio",
+      "version": "1.0.0",
+      "source": "Sarathi EDM Seed",
+      "language": "en",
+      "projectType": "renewable-energy",
+      "status": "PUBLISHED",
+      "documentAssets": [
+        { "documentTypeId": "excel", "fileName": "solar-boq-template.xlsx", "status": "registered" }
+      ]
+    },
+    {
+      "id": "edm-seed-architecture-planning",
+      "title": "Architecture & Planning Digital Memory — Design Manuals",
+      "disciplineId": "architecture-planning",
+      "categoryId": "design-manuals",
+      "keywords": ["architecture", "planning", "urban"],
+      "tags": ["seed", "edm"],
+      "summary": "Metadata index for architecture and planning design manuals.",
+      "author": "Sarathi AI Knowledge Team",
+      "organization": "CEIS AI Studio",
+      "version": "1.0.0",
+      "source": "Sarathi EDM Seed",
+      "language": "en",
+      "projectType": "smart-city",
+      "status": "PUBLISHED",
+      "documentAssets": [
+        { "documentTypeId": "bim-model", "fileName": "campus-masterplan.ifc", "status": "registered" }
+      ]
+    },
+    {
+      "id": "edm-seed-agricultural-engineering",
+      "title": "Agricultural Engineering Digital Memory — FAQs",
+      "disciplineId": "agricultural-engineering",
+      "categoryId": "faqs",
+      "keywords": ["agricultural", "irrigation", "faq"],
+      "tags": ["seed", "edm"],
+      "summary": "Metadata index for agricultural engineering FAQs.",
+      "author": "Sarathi AI Knowledge Team",
+      "organization": "CEIS AI Studio",
+      "version": "1.0.0",
+      "source": "Sarathi EDM Seed",
+      "language": "en",
+      "projectType": "research",
+      "status": "PUBLISHED",
+      "documentAssets": []
+    },
+    {
+      "id": "edm-seed-biomedical-engineering",
+      "title": "Biomedical Engineering Digital Memory — Standards",
+      "disciplineId": "biomedical-engineering",
+      "categoryId": "standards-codes",
+      "keywords": ["biomedical", "medical-device", "standards"],
+      "tags": ["seed", "edm"],
+      "summary": "Metadata index for biomedical engineering standards.",
+      "author": "Sarathi AI Knowledge Team",
+      "organization": "CEIS AI Studio",
+      "version": "1.0.0",
+      "source": "Sarathi EDM Seed",
+      "language": "en",
+      "projectType": "research",
+      "standardNumbers": ["ISO 13485"],
+      "status": "PUBLISHED",
+      "documentAssets": []
+    },
+    {
+      "id": "edm-seed-oil-gas-engineering",
+      "title": "Oil & Gas Engineering Digital Memory — Safety",
+      "disciplineId": "oil-gas-engineering",
+      "categoryId": "safety",
+      "keywords": ["oil", "gas", "safety", "hse"],
+      "tags": ["seed", "edm"],
+      "summary": "Metadata index for oil and gas safety guidance.",
+      "author": "Sarathi AI Knowledge Team",
+      "organization": "CEIS AI Studio",
+      "version": "1.0.0",
+      "source": "Sarathi EDM Seed",
+      "language": "en",
+      "projectType": "oil-gas",
+      "standardNumbers": ["API 650"],
+      "status": "PUBLISHED",
+      "documentAssets": [
+        { "documentTypeId": "pdf", "fileName": "offshore-safety-guide.pdf", "status": "registered" },
+        { "documentTypeId": "gis-file", "fileName": "pipeline-corridor.geojson", "status": "registered" }
+      ]
+    }
+  ]
+}

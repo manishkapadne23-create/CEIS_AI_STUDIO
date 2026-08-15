@@ -1,0 +1,9 @@
+{
+  "version": "1.0.0",
+  "schema": "sarathi-epie-coach-v1",
+  "coachModes": [
+    { "id": "daily", "label": "Daily Engineering Insights", "horizonDays": 1 },
+    { "id": "weekly", "label": "Weekly Recommendations", "horizonDays": 7 },
+    { "id": "monthly", "label": "Monthly Learning Summary", "horizonDays": 30 }
+  ]
+}

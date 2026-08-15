@@ -1,0 +1,15 @@
+{
+  "version": "1.0.0",
+  "schema": "sarathi-esipf-feature-flags-v1",
+  "features": {
+    "ai-chat-basic": { "label": "Basic AI chat", "minTier": "FREE" },
+    "ai-complete": { "label": "Full AI completion", "minTier": "PRO" },
+    "ai-stream": { "label": "AI streaming", "minTier": "PRO_PLUS" },
+    "simulation": { "label": "Scenario simulation", "minTier": "PRO" },
+    "agents": { "label": "Multi-agent collaboration", "minTier": "PRO_PLUS" },
+    "digital-engineer": { "label": "Digital engineer profile", "minTier": "PRO_PLUS" },
+    "orchestrator": { "label": "Engineering orchestrator", "minTier": "PRO_PLUS" },
+    "audit-export": { "label": "Audit log export", "minTier": "INSTITUTION" },
+    "multi-user": { "label": "Multi-user workspace", "minTier": "INSTITUTION" }
+  }
+}

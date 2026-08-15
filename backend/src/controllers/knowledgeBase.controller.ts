@@ -15,7 +15,7 @@ import {
   updateCategory,
   updateDocument,
   updateSubCategory,
-} from "../services/knowledgeBase.service";
+} from "../services/knowledgeBase.service.js";
 
 const sendError = (res: Response, status: number, message: string) =>
   res.status(status).json({ success: false, message });

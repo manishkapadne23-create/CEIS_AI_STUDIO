@@ -1,0 +1,21 @@
+{
+  "version": "1.0.0",
+  "schema": "sarathi-edm-project-types-v1",
+  "projectTypes": [
+    { "id": "highway", "label": "Highway" },
+    { "id": "bridge", "label": "Bridge" },
+    { "id": "building", "label": "Building" },
+    { "id": "industrial-plant", "label": "Industrial Plant" },
+    { "id": "metro-rail", "label": "Metro / Rail" },
+    { "id": "airport", "label": "Airport" },
+    { "id": "port-marine", "label": "Port / Marine" },
+    { "id": "pipeline", "label": "Pipeline" },
+    { "id": "power-plant", "label": "Power Plant" },
+    { "id": "renewable-energy", "label": "Renewable Energy" },
+    { "id": "water-treatment", "label": "Water Treatment" },
+    { "id": "mining", "label": "Mining" },
+    { "id": "oil-gas", "label": "Oil & Gas" },
+    { "id": "smart-city", "label": "Smart City" },
+    { "id": "research", "label": "Research" }
+  ]
+}

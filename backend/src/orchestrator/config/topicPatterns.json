@@ -1,0 +1,70 @@
+{
+  "version": "1.0.0",
+  "schema": "sarathi-eoe-topic-patterns-v1",
+  "patterns": [
+    {
+      "pattern": "flexible pavement",
+      "disciplineId": "civil-engineering",
+      "disciplineName": "Civil Engineering",
+      "specializationId": "pavement-engineering",
+      "specializationName": "Pavement Engineering",
+      "topic": "Flexible Pavement"
+    },
+    {
+      "pattern": "rigid pavement",
+      "disciplineId": "civil-engineering",
+      "disciplineName": "Civil Engineering",
+      "specializationId": "pavement-engineering",
+      "specializationName": "Pavement Engineering",
+      "topic": "Rigid Pavement"
+    },
+    {
+      "pattern": "bridge design",
+      "disciplineId": "civil-engineering",
+      "disciplineName": "Civil Engineering",
+      "specializationId": "bridge-engineering",
+      "specializationName": "Bridge Engineering",
+      "topic": "Bridge Design"
+    },
+    {
+      "pattern": "structural design",
+      "disciplineId": "civil-engineering",
+      "disciplineName": "Civil Engineering",
+      "specializationId": "structural-engineering",
+      "specializationName": "Structural Engineering",
+      "topic": "Structural Design"
+    },
+    {
+      "pattern": "concrete mix",
+      "disciplineId": "civil-engineering",
+      "disciplineName": "Civil Engineering",
+      "specializationId": "structural-engineering",
+      "specializationName": "Structural Engineering",
+      "topic": "Concrete Mix Design"
+    },
+    {
+      "pattern": "hvac",
+      "disciplineId": "mechanical-engineering",
+      "disciplineName": "Mechanical Engineering",
+      "specializationId": "hvac-engineering",
+      "specializationName": "HVAC Engineering",
+      "topic": "HVAC Systems"
+    },
+    {
+      "pattern": "power system",
+      "disciplineId": "electrical-engineering",
+      "disciplineName": "Electrical Engineering",
+      "specializationId": "power-systems",
+      "specializationName": "Power Systems",
+      "topic": "Power Systems"
+    },
+    {
+      "pattern": "solar energy",
+      "disciplineId": "renewable-energy",
+      "disciplineName": "Renewable Energy",
+      "specializationId": "solar-energy",
+      "specializationName": "Solar Energy",
+      "topic": "Solar Energy"
+    }
+  ]
+}

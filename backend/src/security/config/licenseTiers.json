@@ -1,0 +1,37 @@
+{
+  "version": "1.0.0",
+  "schema": "sarathi-esipf-license-tiers-v1",
+  "tiers": [
+    {
+      "id": "FREE",
+      "label": "Free",
+      "features": ["ai-chat-basic", "knowledge-read", "engineering-domains"]
+    },
+    {
+      "id": "STANDARD",
+      "label": "Standard",
+      "features": ["ai-chat-basic", "knowledge-read", "engineering-domains", "calculators", "workflows-read"]
+    },
+    {
+      "id": "PRO",
+      "label": "Pro",
+      "features": ["ai-chat-basic", "ai-complete", "knowledge-read", "engineering-domains", "calculators", "workflows-read", "edm", "evidence", "predictive", "simulation"]
+    },
+    {
+      "id": "PRO_PLUS",
+      "label": "Pro+",
+      "features": ["ai-chat-basic", "ai-complete", "ai-stream", "knowledge-read", "engineering-domains", "calculators", "workflows-read", "workflows-write", "edm", "evidence", "predictive", "simulation", "agents", "digital-engineer", "orchestrator"]
+    },
+    {
+      "id": "INSTITUTION",
+      "label": "Institution",
+      "features": ["ai-chat-basic", "ai-complete", "ai-stream", "knowledge-read", "engineering-domains", "calculators", "workflows-read", "workflows-write", "edm", "evidence", "predictive", "simulation", "agents", "digital-engineer", "orchestrator", "multi-user", "audit-export"]
+    },
+    {
+      "id": "ENTERPRISE",
+      "label": "Enterprise",
+      "features": ["*"]
+    }
+  ],
+  "offlineLicense": { "enabled": false, "futureReady": true }
+}

@@ -1,0 +1,15 @@
+{
+  "version": "1.0.0",
+  "schema": "sarathi-eece-evidence-sources-v1",
+  "sources": [
+    { "id": "standards", "label": "Applicable Standards", "category": "verified" },
+    { "id": "technical-manuals", "label": "Technical Manuals", "category": "verified" },
+    { "id": "specifications", "label": "Engineering Specifications", "category": "verified" },
+    { "id": "design-guides", "label": "Design Guides", "category": "verified" },
+    { "id": "research-papers", "label": "Research Papers", "category": "verified" },
+    { "id": "calculations", "label": "Engineering Calculations", "category": "analysis" },
+    { "id": "government-publications", "label": "Government Publications", "category": "verified" },
+    { "id": "user-documents", "label": "User Uploaded Documents", "category": "user" },
+    { "id": "internal-knowledge-base", "label": "Internal Knowledge Base", "category": "verified" }
+  ]
+}

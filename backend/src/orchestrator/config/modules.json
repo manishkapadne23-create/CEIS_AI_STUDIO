@@ -1,0 +1,94 @@
+{
+  "version": "1.0.0",
+  "schema": "sarathi-eoe-modules-v1",
+  "modules": [
+    {
+      "id": "ai-expert",
+      "label": "AI Expert",
+      "description": "Core engineering AI reasoning and guidance.",
+      "priority": 5,
+      "fallbackModuleId": null,
+      "active": true
+    },
+    {
+      "id": "knowledge-base",
+      "label": "Knowledge Base",
+      "description": "Engineering knowledge framework and EDM metadata.",
+      "priority": 8,
+      "fallbackModuleId": "ai-expert",
+      "active": true
+    },
+    {
+      "id": "standards-engine",
+      "label": "Standards Engine",
+      "description": "Codes, standards, and compliance references.",
+      "priority": 9,
+      "fallbackModuleId": "knowledge-base",
+      "active": true
+    },
+    {
+      "id": "calculator-engine",
+      "label": "Calculator Engine",
+      "description": "Engineering calculators and computation workflows.",
+      "priority": 9,
+      "fallbackModuleId": "ai-expert",
+      "active": true
+    },
+    {
+      "id": "workflow-engine",
+      "label": "Workflow Engine",
+      "description": "Multi-step engineering workflows and procedures.",
+      "priority": 8,
+      "fallbackModuleId": "professional-tools",
+      "active": true
+    },
+    {
+      "id": "document-engine",
+      "label": "Document Engine",
+      "description": "Document intelligence and drawing metadata.",
+      "priority": 8,
+      "fallbackModuleId": "knowledge-base",
+      "active": true
+    },
+    {
+      "id": "learning-hub",
+      "label": "Learning Hub",
+      "description": "Courses, notes, MCQs, and learning resources.",
+      "priority": 7,
+      "fallbackModuleId": "knowledge-base",
+      "active": true
+    },
+    {
+      "id": "professional-tools",
+      "label": "Professional Tools",
+      "description": "BOQ, estimation, QA/QC, and professional utilities.",
+      "priority": 8,
+      "fallbackModuleId": "ai-expert",
+      "active": true
+    },
+    {
+      "id": "engineering-memory",
+      "label": "Engineering Memory",
+      "description": "Engineering Digital Memory (EDM) repository.",
+      "priority": 9,
+      "fallbackModuleId": "knowledge-base",
+      "active": true
+    },
+    {
+      "id": "decision-intelligence",
+      "label": "Decision Intelligence",
+      "description": "Structured engineering decision support.",
+      "priority": 8,
+      "fallbackModuleId": "ai-expert",
+      "active": true
+    },
+    {
+      "id": "simulation-engine",
+      "label": "Simulation & Scenario Analysis",
+      "description": "AI-assisted engineering scenario comparison and decision support.",
+      "priority": 9,
+      "fallbackModuleId": "decision-intelligence",
+      "active": true
+    }
+  ]
+}

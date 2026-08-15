@@ -1,4 +1,4 @@
-import { prisma } from "../prisma/prisma";
+import { prisma } from "../prisma/prisma.js";
 
 const normalizeText = (value?: string) => {
   if (typeof value !== "string") return undefined;

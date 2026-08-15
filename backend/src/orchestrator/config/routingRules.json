@@ -1,0 +1,103 @@
+{
+  "version": "1.0.0",
+  "schema": "sarathi-eoe-routing-v1",
+  "routes": [
+    {
+      "intentId": "question",
+      "modules": [
+        { "moduleId": "ai-expert", "role": "primary", "priority": 8, "reason": "General engineering Q&A" },
+        { "moduleId": "knowledge-base", "role": "supporting", "priority": 6, "reason": "Reference knowledge" }
+      ]
+    },
+    {
+      "intentId": "design",
+      "modules": [
+        { "moduleId": "ai-expert", "role": "primary", "priority": 9, "reason": "Design guidance" },
+        { "moduleId": "standards-engine", "role": "supporting", "priority": 9, "reason": "Applicable standards" },
+        { "moduleId": "calculator-engine", "role": "supporting", "priority": 8, "reason": "Design calculations" },
+        { "moduleId": "workflow-engine", "role": "supporting", "priority": 7, "reason": "Design workflow steps" },
+        { "moduleId": "engineering-memory", "role": "supporting", "priority": 7, "reason": "Prior design memory" }
+      ]
+    },
+    {
+      "intentId": "calculation",
+      "modules": [
+        { "moduleId": "calculator-engine", "role": "primary", "priority": 10, "reason": "Calculation execution" },
+        { "moduleId": "standards-engine", "role": "supporting", "priority": 7, "reason": "Calculation standards" },
+        { "moduleId": "ai-expert", "role": "supporting", "priority": 7, "reason": "Verification guidance" }
+      ]
+    },
+    {
+      "intentId": "code-search",
+      "modules": [
+        { "moduleId": "standards-engine", "role": "primary", "priority": 10, "reason": "Code and standard lookup" },
+        { "moduleId": "knowledge-base", "role": "supporting", "priority": 8, "reason": "Knowledge references" },
+        { "moduleId": "engineering-memory", "role": "supporting", "priority": 7, "reason": "Stored standard metadata" }
+      ]
+    },
+    {
+      "intentId": "document-search",
+      "modules": [
+        { "moduleId": "document-engine", "role": "primary", "priority": 10, "reason": "Document retrieval" },
+        { "moduleId": "engineering-memory", "role": "supporting", "priority": 8, "reason": "EDM document metadata" },
+        { "moduleId": "knowledge-base", "role": "supporting", "priority": 6, "reason": "Knowledge references" }
+      ]
+    },
+    {
+      "intentId": "learning",
+      "modules": [
+        { "moduleId": "learning-hub", "role": "primary", "priority": 10, "reason": "Learning resources" },
+        { "moduleId": "knowledge-base", "role": "supporting", "priority": 6, "reason": "Supplementary knowledge" }
+      ]
+    },
+    {
+      "intentId": "estimation",
+      "modules": [
+        { "moduleId": "professional-tools", "role": "primary", "priority": 10, "reason": "BOQ and estimation tools" },
+        { "moduleId": "calculator-engine", "role": "supporting", "priority": 8, "reason": "Quantity calculations" },
+        { "moduleId": "workflow-engine", "role": "supporting", "priority": 7, "reason": "Estimation workflow" }
+      ]
+    },
+    {
+      "intentId": "tender",
+      "modules": [
+        { "moduleId": "professional-tools", "role": "primary", "priority": 9, "reason": "Tender preparation" },
+        { "moduleId": "document-engine", "role": "supporting", "priority": 8, "reason": "Tender documents" },
+        { "moduleId": "workflow-engine", "role": "supporting", "priority": 7, "reason": "Tender workflow" }
+      ]
+    },
+    {
+      "intentId": "contract",
+      "modules": [
+        { "moduleId": "document-engine", "role": "primary", "priority": 9, "reason": "Contract documents" },
+        { "moduleId": "ai-expert", "role": "supporting", "priority": 7, "reason": "Contract interpretation" },
+        { "moduleId": "decision-intelligence", "role": "supporting", "priority": 6, "reason": "Contract decisions" }
+      ]
+    },
+    {
+      "intentId": "troubleshooting",
+      "modules": [
+        { "moduleId": "ai-expert", "role": "primary", "priority": 9, "reason": "Diagnostic guidance" },
+        { "moduleId": "standards-engine", "role": "supporting", "priority": 7, "reason": "Compliance checks" },
+        { "moduleId": "engineering-memory", "role": "supporting", "priority": 6, "reason": "Past issue memory" }
+      ]
+    },
+    {
+      "intentId": "research",
+      "modules": [
+        { "moduleId": "learning-hub", "role": "primary", "priority": 8, "reason": "Research resources" },
+        { "moduleId": "knowledge-base", "role": "supporting", "priority": 8, "reason": "Technical knowledge" },
+        { "moduleId": "engineering-memory", "role": "supporting", "priority": 7, "reason": "Case studies and papers" }
+      ]
+    },
+    {
+      "intentId": "decision-support",
+      "modules": [
+        { "moduleId": "simulation-engine", "role": "primary", "priority": 10, "reason": "Scenario comparison and alternatives analysis" },
+        { "moduleId": "decision-intelligence", "role": "supporting", "priority": 9, "reason": "Structured decision analysis" },
+        { "moduleId": "standards-engine", "role": "supporting", "priority": 7, "reason": "Standards comparison" },
+        { "moduleId": "ai-expert", "role": "supporting", "priority": 7, "reason": "Expert recommendation" }
+      ]
+    }
+  ]
+}

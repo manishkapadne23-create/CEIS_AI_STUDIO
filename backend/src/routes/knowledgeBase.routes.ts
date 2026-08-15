@@ -15,8 +15,8 @@ import {
   updateKnowledgeBaseCategory,
   updateKnowledgeBaseDocument,
   updateKnowledgeBaseSubCategory,
-} from "../controllers/knowledgeBase.controller";
-import { protect, authorize } from "../middleware/auth.middleware";
+} from "../controllers/knowledgeBase.controller.js";
+import { protect, authorize } from "../middleware/auth.middleware.js";
 
 const router = Router();
 

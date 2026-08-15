@@ -1,0 +1,17 @@
+{
+  "version": "1.0.0",
+  "schema": "sarathi-ewi-sync-v1",
+  "capabilities": [
+    { "id": "cross-device", "label": "Cross-device Synchronization", "status": "planned" },
+    { "id": "offline", "label": "Offline Workspace", "status": "planned" },
+    { "id": "cloud-backup", "label": "Cloud Backup", "status": "planned" },
+    { "id": "enterprise-storage", "label": "Enterprise Storage", "status": "planned" }
+  ],
+  "futureReady": [
+    "pmis-project-workspaces",
+    "institution-workspaces",
+    "organization-workspaces",
+    "team-collaboration",
+    "digital-engineering-office"
+  ]
+}

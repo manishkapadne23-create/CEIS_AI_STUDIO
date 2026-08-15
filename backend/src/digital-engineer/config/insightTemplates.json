@@ -1,0 +1,16 @@
+{
+  "version": "1.0.0",
+  "schema": "sarathi-ede-insights-v1",
+  "insightTypes": [
+    { "id": "weekly-summary", "label": "Weekly Engineering Summary", "enumType": "WEEKLY_SUMMARY", "horizonDays": 7 },
+    { "id": "monthly-learning", "label": "Monthly Learning Report", "enumType": "MONTHLY_LEARNING", "horizonDays": 30 },
+    { "id": "skill-growth", "label": "Skill Growth Report", "enumType": "SKILL_GROWTH", "horizonDays": 30 },
+    { "id": "activity-report", "label": "Engineering Activity Report", "enumType": "ACTIVITY_REPORT", "horizonDays": 7 }
+  ],
+  "futureReady": [
+    "enterprise-competency-management",
+    "institution-student-profiles",
+    "professional-certification-tracking",
+    "pmis-resource-competency-engine"
+  ]
+}

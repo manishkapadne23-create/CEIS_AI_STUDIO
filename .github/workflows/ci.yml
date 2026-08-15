@@ -1,0 +1,90 @@
+name: Sarathi AI CI/CD
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  quality-gates:
+    name: Quality Gates
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: |
+            backend/package-lock.json
+            frontend/package-lock.json
+
+      - name: Install backend dependencies
+        working-directory: backend
+        run: npm ci
+
+      - name: Install frontend dependencies
+        working-directory: frontend
+        run: npm ci
+
+      - name: Type safety (backend)
+        working-directory: backend
+        run: npm run lint
+
+      - name: Unit tests
+        working-directory: backend
+        run: npm test
+
+      - name: Build backend
+        working-directory: backend
+        run: npm run build
+
+      - name: Build frontend
+        working-directory: frontend
+        run: npm run build
+
+      - name: Governance quality gates
+        working-directory: backend
+        run: node scripts/governance-check.mjs
+
+  docker-build:
+    name: Docker Build
+    runs-on: ubuntu-latest
+    needs: quality-gates
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build backend Docker image
+        run: docker build -t sarathi-ai-backend ./backend
+
+      - name: Build frontend Docker image
+        run: docker build -t sarathi-ai-frontend ./frontend
+
+  security-scan:
+    name: Security Checks
+    runs-on: ubuntu-latest
+    needs: quality-gates
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install backend dependencies
+        working-directory: backend
+        run: npm ci
+
+      - name: Audit backend dependencies
+        working-directory: backend
+        run: npm audit --audit-level=high || true
+
+      - name: Verify no secrets in env example
+        run: |
+          if grep -q "sk-" backend/.env.example 2>/dev/null; then
+            echo "Potential API key found in .env.example"
+            exit 1
+          fi
+          echo "No hardcoded API keys in .env.example"

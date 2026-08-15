@@ -1,0 +1,44 @@
+{
+  "version": "1.0.0",
+  "schema": "sarathi-eoe-task-templates-v1",
+  "templates": [
+    {
+      "id": "prepare-dpr",
+      "label": "Prepare DPR",
+      "triggerPatterns": ["\\bprepare dpr\\b", "\\bdetailed project report\\b", "\\bproject report\\b"],
+      "steps": [
+        { "order": 1, "moduleId": "standards-engine", "action": "Identify applicable standards and codes" },
+        { "order": 2, "moduleId": "workflow-engine", "action": "Survey and data collection workflow" },
+        { "order": 3, "moduleId": "ai-expert", "action": "Engineering design and technical narrative" },
+        { "order": 4, "moduleId": "professional-tools", "action": "BOQ preparation" },
+        { "order": 5, "moduleId": "professional-tools", "action": "Cost estimation" },
+        { "order": 6, "moduleId": "document-engine", "action": "Compile reports and annexures" }
+      ]
+    },
+    {
+      "id": "concrete-mix-design",
+      "label": "Concrete Mix Design",
+      "triggerPatterns": ["\\bconcrete mix\\b", "\\bm\\d+\\s+concrete\\b", "\\bmix design\\b"],
+      "steps": [
+        { "order": 1, "moduleId": "knowledge-base", "action": "Engineering knowledge references" },
+        { "order": 2, "moduleId": "standards-engine", "action": "Relevant concrete standards" },
+        { "order": 3, "moduleId": "calculator-engine", "action": "Mix design calculator" },
+        { "order": 4, "moduleId": "professional-tools", "action": "QA checklist" },
+        { "order": 5, "moduleId": "workflow-engine", "action": "Construction methodology" },
+        { "order": 6, "moduleId": "learning-hub", "action": "Learning resource" }
+      ]
+    },
+    {
+      "id": "flexible-pavement-design",
+      "label": "Flexible Pavement Design",
+      "triggerPatterns": ["\\bflexible pavement\\b", "\\bpavement design\\b"],
+      "steps": [
+        { "order": 1, "moduleId": "standards-engine", "action": "IRC/MORTH pavement standards" },
+        { "order": 2, "moduleId": "calculator-engine", "action": "Pavement thickness design" },
+        { "order": 3, "moduleId": "ai-expert", "action": "Design guidance and assumptions" },
+        { "order": 4, "moduleId": "professional-tools", "action": "Material specifications checklist" },
+        { "order": 5, "moduleId": "workflow-engine", "action": "Construction methodology" }
+      ]
+    }
+  ]
+}

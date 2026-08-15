@@ -1,0 +1,16 @@
+{
+  "version": "1.0.0",
+  "schema": "sarathi-epie-recommendation-categories-v1",
+  "categories": [
+    { "id": "standards", "label": "Applicable Standards", "moduleId": "standards-engine", "priority": 9 },
+    { "id": "calculators", "label": "Engineering Calculators", "moduleId": "calculator-engine", "priority": 9 },
+    { "id": "templates", "label": "Templates", "moduleId": "professional-tools", "priority": 8 },
+    { "id": "reports", "label": "Reports", "moduleId": "professional-tools", "priority": 7 },
+    { "id": "checklists", "label": "Engineering Checklists", "moduleId": "workflow-engine", "priority": 8 },
+    { "id": "qa-qc", "label": "QA/QC Procedures", "moduleId": "professional-tools", "priority": 8 },
+    { "id": "safety", "label": "Safety Guidelines", "moduleId": "knowledge-base", "priority": 8 },
+    { "id": "professional-tools", "label": "Professional Tools", "moduleId": "professional-tools", "priority": 7 },
+    { "id": "workflows", "label": "Engineering Workflows", "moduleId": "workflow-engine", "priority": 8 },
+    { "id": "learning", "label": "Learning Resources", "moduleId": "learning-hub", "priority": 7 }
+  ]
+}

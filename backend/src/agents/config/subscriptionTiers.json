@@ -1,0 +1,33 @@
+{
+  "version": "1.0.0",
+  "schema": "sarathi-emace-subscription-v1",
+  "tiers": {
+    "free": {
+      "maxAgentsPerRequest": 3,
+      "allowedAgentIds": [
+        "engineering-expert",
+        "standards-expert",
+        "design-expert",
+        "calculation-expert",
+        "safety-expert",
+        "research-expert",
+        "learning-expert",
+        "document-expert"
+      ]
+    },
+    "pro": {
+      "maxAgentsPerRequest": 6,
+      "allowedAgentIds": "all"
+    },
+    "enterprise": {
+      "maxAgentsPerRequest": 12,
+      "allowedAgentIds": "all"
+    }
+  },
+  "futureReady": [
+    "enterprise-ai-teams",
+    "institution-ai-teams",
+    "department-ai-teams",
+    "pmis-ai-workforce"
+  ]
+}

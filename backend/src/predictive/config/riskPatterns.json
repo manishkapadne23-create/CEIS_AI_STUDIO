@@ -1,0 +1,35 @@
+{
+  "version": "1.0.0",
+  "schema": "sarathi-epie-risk-patterns-v1",
+  "riskCategories": [
+    { "id": "design-risk", "label": "Potential Design Risks", "severity": "high" },
+    { "id": "compliance-risk", "label": "Compliance Risks", "severity": "high" },
+    { "id": "documentation-gap", "label": "Documentation Gaps", "severity": "medium" },
+    { "id": "missing-standards", "label": "Missing Standards", "severity": "medium" },
+    { "id": "missing-qa-qc", "label": "Missing QA/QC Steps", "severity": "medium" },
+    { "id": "construction-risk", "label": "Construction Risks", "severity": "high" },
+    { "id": "safety-risk", "label": "Safety Risks", "severity": "critical" }
+  ],
+  "detectors": [
+    {
+      "riskId": "missing-standards",
+      "patterns": ["\\bdesign\\b", "\\bwithout\\s+standard\\b"],
+      "condition": "no-standards-in-context"
+    },
+    {
+      "riskId": "missing-qa-qc",
+      "patterns": ["\\bconstruction\\b", "\\bexecution\\b"],
+      "condition": "no-qa-qc-activity"
+    },
+    {
+      "riskId": "documentation-gap",
+      "patterns": ["\\breport\\b", "\\bdpr\\b", "\\bsubmission\\b"],
+      "condition": "no-recent-documents"
+    },
+    {
+      "riskId": "safety-risk",
+      "patterns": ["\\bexcavation\\b", "\\bscaffold\\b", "\\bconfined space\\b"],
+      "condition": "no-safety-activity"
+    }
+  ]
+}

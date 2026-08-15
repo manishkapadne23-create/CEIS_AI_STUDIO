@@ -1,0 +1,12 @@
+{
+  "version": "1.0.0",
+  "schema": "sarathi-ewi-workspace-types-v1",
+  "types": [
+    { "id": "PERSONAL", "label": "Personal Workspace", "autoCreate": true, "active": true },
+    { "id": "PROJECT", "label": "Project Workspace", "autoCreate": true, "active": true },
+    { "id": "DISCIPLINE", "label": "Discipline Workspace", "autoCreate": true, "active": true },
+    { "id": "SPECIALIZATION", "label": "Specialization Workspace", "autoCreate": true, "active": true },
+    { "id": "INSTITUTION", "label": "Institution Workspace", "autoCreate": false, "active": false, "futureReady": true },
+    { "id": "ENTERPRISE", "label": "Enterprise Workspace", "autoCreate": false, "active": false, "futureReady": true }
+  ]
+}

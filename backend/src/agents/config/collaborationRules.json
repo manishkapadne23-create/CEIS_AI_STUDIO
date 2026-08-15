@@ -1,0 +1,36 @@
+{
+  "version": "1.0.0",
+  "schema": "sarathi-emace-collaboration-v1",
+  "collaborationActions": [
+    {
+      "id": "request-information",
+      "label": "Request information from another agent",
+      "fromRoles": ["specialist", "lead"],
+      "toRoles": ["specialist", "lead", "supporting"]
+    },
+    {
+      "id": "validate-output",
+      "label": "Validate another agent's output",
+      "fromRoles": ["specialist", "lead"],
+      "toRoles": ["specialist"]
+    },
+    {
+      "id": "raise-conflict",
+      "label": "Raise a conflict with another agent",
+      "fromRoles": ["specialist", "lead"],
+      "toRoles": ["specialist"]
+    },
+    {
+      "id": "recommend-alternative",
+      "label": "Recommend an alternative approach",
+      "fromRoles": ["specialist", "lead"],
+      "toRoles": ["specialist", "lead"]
+    }
+  ],
+  "validationPairs": [
+    { "validator": "standards-expert", "validates": ["design-expert", "calculation-expert", "construction-expert"] },
+    { "validator": "safety-expert", "validates": ["design-expert", "construction-expert"] },
+    { "validator": "qa-qc-expert", "validates": ["design-expert", "construction-expert", "calculation-expert"] },
+    { "validator": "calculation-expert", "validates": ["design-expert", "estimation-expert"] }
+  ]
+}

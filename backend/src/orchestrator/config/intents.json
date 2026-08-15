@@ -1,0 +1,78 @@
+{
+  "version": "1.0.0",
+  "schema": "sarathi-eoe-intents-v1",
+  "intents": [
+    {
+      "id": "question",
+      "label": "Question",
+      "patterns": ["\\bwhat is\\b", "\\bexplain\\b", "\\bhow does\\b", "\\bwhy\\b", "\\bdefine\\b"],
+      "priority": 5
+    },
+    {
+      "id": "design",
+      "label": "Design",
+      "patterns": ["\\bdesign\\b", "\\blayout\\b", "\\bconfigure\\b", "\\bsize\\b", "\\bselect\\b"],
+      "priority": 9
+    },
+    {
+      "id": "calculation",
+      "label": "Calculation",
+      "patterns": ["\\bcalculate\\b", "\\bcompute\\b", "\\bsizing\\b", "\\bmix design\\b", "\\bload\\b"],
+      "priority": 9
+    },
+    {
+      "id": "code-search",
+      "label": "Code Search",
+      "patterns": ["\\b(is|irc|iec|astm|nbc|morth|iso)\\s*\\d+", "\\bstandard\\b", "\\bcode\\b", "\\bcompliance\\b"],
+      "priority": 10
+    },
+    {
+      "id": "document-search",
+      "label": "Document Search",
+      "patterns": ["\\bdocument\\b", "\\bdrawing\\b", "\\bpdf\\b", "\\btemplate\\b", "\\bspecification\\b"],
+      "priority": 8
+    },
+    {
+      "id": "learning",
+      "label": "Learning",
+      "patterns": ["\\blearn\\b", "\\btutorial\\b", "\\bcourse\\b", "\\btraining\\b", "\\bexam\\b"],
+      "priority": 7
+    },
+    {
+      "id": "estimation",
+      "label": "Estimation",
+      "patterns": ["\\bestimate\\b", "\\bboq\\b", "\\bbill of quantities\\b", "\\brate analysis\\b", "\\bcost\\b"],
+      "priority": 8
+    },
+    {
+      "id": "tender",
+      "label": "Tender",
+      "patterns": ["\\btender\\b", "\\bbid\\b", "\\brfp\\b", "\\bprocurement\\b"],
+      "priority": 8
+    },
+    {
+      "id": "contract",
+      "label": "Contract",
+      "patterns": ["\\bcontract\\b", "\\bagreement\\b", "\\bscope of work\\b", "\\bterms\\b"],
+      "priority": 7
+    },
+    {
+      "id": "troubleshooting",
+      "label": "Troubleshooting",
+      "patterns": ["\\btroubleshoot\\b", "\\bdebug\\b", "\\bfailure\\b", "\\bdefect\\b", "\\brepair\\b", "\\bfix\\b"],
+      "priority": 8
+    },
+    {
+      "id": "research",
+      "label": "Research",
+      "patterns": ["\\bresearch\\b", "\\bliterature\\b", "\\bpaper\\b", "\\bcase study\\b"],
+      "priority": 6
+    },
+    {
+      "id": "decision-support",
+      "label": "Decision Support",
+      "patterns": ["\\bcompare\\b", "\\bversus\\b", "\\bvs\\b", "\\bwhich is better\\b", "\\bdecision\\b", "\\brecommend\\b", "\\bscenario\\b", "\\balternative\\b", "\\bsimulation\\b", "\\btrade-?off\\b"],
+      "priority": 9
+    }
+  ]
+}

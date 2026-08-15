@@ -1,0 +1,13 @@
+{
+  "version": "1.0.0",
+  "schema": "sarathi-edm-search-facets-v1",
+  "facets": [
+    { "id": "keyword", "label": "Keyword", "queryParam": "q", "type": "text" },
+    { "id": "standardNumber", "label": "Standard Number", "queryParam": "standardNumber", "type": "text" },
+    { "id": "projectType", "label": "Project Type", "queryParam": "projectType", "type": "enum", "configRef": "projectTypes" },
+    { "id": "disciplineId", "label": "Engineering Discipline", "queryParam": "disciplineId", "type": "reference", "reference": "engineering_disciplines" },
+    { "id": "categoryId", "label": "Category", "queryParam": "categoryId", "type": "reference", "reference": "engineering_knowledge_categories" },
+    { "id": "author", "label": "Author", "queryParam": "author", "type": "text" },
+    { "id": "tags", "label": "Tags", "queryParam": "tags", "type": "array" }
+  ]
+}

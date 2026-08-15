@@ -1,0 +1,20 @@
+{
+  "version": "1.0.0",
+  "schema": "sarathi-ewi-organization-v1",
+  "organizeBy": [
+    { "id": "discipline", "label": "Engineering Discipline", "field": "disciplineId" },
+    { "id": "specialization", "label": "Specialization", "field": "specializationId" },
+    { "id": "project", "label": "Project", "field": "projectId" },
+    { "id": "date", "label": "Date", "field": "lastActivityAt" },
+    { "id": "client", "label": "Client", "field": "clientName" },
+    { "id": "topic", "label": "Topic", "field": "topic" },
+    { "id": "tags", "label": "Tags", "field": "tags" },
+    { "id": "recent-activity", "label": "Recent Activity", "field": "lastActivityAt" }
+  ],
+  "autoWorkspaceRules": [
+    { "trigger": "personal", "workspaceType": "PERSONAL", "nameTemplate": "My Engineering Workspace" },
+    { "trigger": "project", "workspaceType": "PROJECT", "nameTemplate": "Project: {projectName}" },
+    { "trigger": "discipline", "workspaceType": "DISCIPLINE", "nameTemplate": "{disciplineName} Workspace" },
+    { "trigger": "specialization", "workspaceType": "SPECIALIZATION", "nameTemplate": "{specializationName} Workspace" }
+  ]
+}

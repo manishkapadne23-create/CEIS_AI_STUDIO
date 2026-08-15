@@ -1,0 +1,11 @@
+{
+  "version": "1.0.0",
+  "schema": "sarathi-eece-trust-levels-v1",
+  "levels": [
+    { "id": "verified", "label": "Verified", "enum": "VERIFIED", "minScore": 0.9 },
+    { "id": "high-confidence", "label": "High Confidence", "enum": "HIGH_CONFIDENCE", "minScore": 0.75 },
+    { "id": "medium-confidence", "label": "Medium Confidence", "enum": "MEDIUM_CONFIDENCE", "minScore": 0.55 },
+    { "id": "low-confidence", "label": "Low Confidence", "enum": "LOW_CONFIDENCE", "minScore": 0.35 },
+    { "id": "insufficient-evidence", "label": "Insufficient Evidence", "enum": "INSUFFICIENT_EVIDENCE", "minScore": 0 }
+  ]
+}

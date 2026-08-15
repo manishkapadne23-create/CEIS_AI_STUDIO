@@ -1,0 +1,18 @@
+{
+  "version": "1.0.0",
+  "schema": "sarathi-ewi-content-types-v1",
+  "contentTypes": [
+    { "id": "AI_CONVERSATION", "label": "AI Conversations", "searchable": true, "versioned": true },
+    { "id": "ENGINEERING_DOCUMENT", "label": "Engineering Documents", "searchable": true, "versioned": true },
+    { "id": "STANDARD", "label": "Standards", "searchable": true, "versioned": false },
+    { "id": "CALCULATION", "label": "Calculations", "searchable": true, "versioned": true },
+    { "id": "REPORT", "label": "Reports", "searchable": true, "versioned": true },
+    { "id": "TEMPLATE", "label": "Templates", "searchable": true, "versioned": true },
+    { "id": "CHECKLIST", "label": "Checklists", "searchable": true, "versioned": false },
+    { "id": "NOTE", "label": "Notes", "searchable": true, "versioned": true },
+    { "id": "BOOKMARK", "label": "Bookmarks", "searchable": true, "versioned": false },
+    { "id": "ENGINEERING_DECISION", "label": "Engineering Decisions", "searchable": true, "versioned": true },
+    { "id": "ENGINEERING_EVIDENCE", "label": "Engineering Evidence", "searchable": true, "versioned": true },
+    { "id": "GENERATED_FILE", "label": "Generated Files", "searchable": true, "versioned": true }
+  ]
+}

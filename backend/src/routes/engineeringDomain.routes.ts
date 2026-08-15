@@ -5,8 +5,8 @@ import {
   getEngineeringDomainController,
   listEngineeringDomainsController,
   updateEngineeringDomainController,
-} from "../controllers/engineeringDomain.controller";
-import { protect, authorize } from "../middleware/auth.middleware";
+} from "../controllers/engineeringDomain.controller.js";
+import { protect, authorize } from "../middleware/auth.middleware.js";
 
 const router = Router();
 

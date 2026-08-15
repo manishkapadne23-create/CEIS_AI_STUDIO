@@ -1,0 +1,60 @@
+{
+  "version": "1.0.0",
+  "schema": "sarathi-emace-conflicts-v1",
+  "conflictScenarios": [
+    {
+      "id": "design-vs-safety",
+      "agents": ["design-expert", "safety-expert"],
+      "topicPatterns": ["highway", "bridge", "excavation", "scaffold"],
+      "optionA": {
+        "label": "Design-Optimized Approach",
+        "agentId": "design-expert",
+        "advantages": ["Lower cost", "Faster construction", "Simpler geometry"],
+        "limitations": ["May require additional safety measures", "Higher operational risk during construction"]
+      },
+      "optionB": {
+        "label": "Safety-First Approach",
+        "agentId": "safety-expert",
+        "advantages": ["Enhanced worker safety", "Reduced incident risk", "Better HSE compliance"],
+        "limitations": ["Higher cost", "Longer construction duration", "More complex staging"]
+      },
+      "applicableStandards": ["IRC", "MoRTH", "OSHA", "Indian Factory Act"]
+    },
+    {
+      "id": "design-vs-estimation",
+      "agents": ["design-expert", "estimation-expert"],
+      "topicPatterns": ["pavement", "structural", "foundation"],
+      "optionA": {
+        "label": "Performance-Optimized Design",
+        "agentId": "design-expert",
+        "advantages": ["Higher design life", "Better performance", "Lower maintenance"],
+        "limitations": ["Higher initial cost", "More material consumption"]
+      },
+      "optionB": {
+        "label": "Cost-Optimized Design",
+        "agentId": "estimation-expert",
+        "advantages": ["Lower capital cost", "Budget compliance", "Competitive tender pricing"],
+        "limitations": ["May reduce design life", "Higher lifecycle maintenance cost"]
+      },
+      "applicableStandards": ["MoRTH SOR", "CPWD DSR", "Project specifications"]
+    },
+    {
+      "id": "standards-vs-construction",
+      "agents": ["standards-expert", "construction-expert"],
+      "topicPatterns": ["construction", "method", "execution"],
+      "optionA": {
+        "label": "Code-Compliant Strict Approach",
+        "agentId": "standards-expert",
+        "advantages": ["Full code compliance", "Audit-ready documentation", "Lower liability"],
+        "limitations": ["Slower execution", "Higher compliance overhead"]
+      },
+      "optionB": {
+        "label": "Practical Site Approach",
+        "agentId": "construction-expert",
+        "advantages": ["Faster site progress", "Practical constructability", "Reduced rework risk"],
+        "limitations": ["May need formal deviation approval", "Requires enhanced QA/QC"]
+      },
+      "applicableStandards": ["IRC", "IS codes", "Project QAP"]
+    }
+  ]
+}

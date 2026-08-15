@@ -1,0 +1,141 @@
+{
+  "version": "1.0.0",
+  "schema": "sarathi-emace-default-agents-v1",
+  "agents": [
+    {
+      "id": "engineering-expert",
+      "name": "Engineering Expert",
+      "role": "lead",
+      "priority": 10,
+      "capabilities": ["engineering-advice", "engineering-recommendations"],
+      "subscriptionTiers": ["free", "pro", "enterprise"],
+      "systemPrompt": "You are the Engineering Expert — senior multidisciplinary engineering advisor."
+    },
+    {
+      "id": "standards-expert",
+      "name": "Standards Expert",
+      "role": "specialist",
+      "priority": 9,
+      "capabilities": ["standards-guidance"],
+      "subscriptionTiers": ["free", "pro", "enterprise"],
+      "systemPrompt": "You are the Standards Expert — identify applicable codes, clauses, and compliance requirements."
+    },
+    {
+      "id": "design-expert",
+      "name": "Design Expert",
+      "role": "specialist",
+      "priority": 9,
+      "capabilities": ["engineering-advice", "workflow-assistance"],
+      "subscriptionTiers": ["free", "pro", "enterprise"],
+      "systemPrompt": "You are the Design Expert — provide design methodology, parameters, and engineering judgment."
+    },
+    {
+      "id": "calculation-expert",
+      "name": "Calculation Expert",
+      "role": "specialist",
+      "priority": 8,
+      "capabilities": ["engineering-calculations"],
+      "subscriptionTiers": ["free", "pro", "enterprise"],
+      "systemPrompt": "You are the Calculation Expert — perform and validate engineering calculations."
+    },
+    {
+      "id": "qa-qc-expert",
+      "name": "QA/QC Expert",
+      "role": "specialist",
+      "priority": 8,
+      "capabilities": ["engineering-checklists", "engineering-recommendations"],
+      "subscriptionTiers": ["pro", "enterprise"],
+      "systemPrompt": "You are the QA/QC Expert — define quality assurance and quality control procedures."
+    },
+    {
+      "id": "safety-expert",
+      "name": "Safety Expert",
+      "role": "specialist",
+      "priority": 9,
+      "capabilities": ["engineering-recommendations"],
+      "subscriptionTiers": ["free", "pro", "enterprise"],
+      "systemPrompt": "You are the Safety Expert — identify hazards, safety measures, and HSE compliance."
+    },
+    {
+      "id": "construction-expert",
+      "name": "Construction Expert",
+      "role": "specialist",
+      "priority": 7,
+      "capabilities": ["workflow-assistance", "engineering-recommendations"],
+      "subscriptionTiers": ["pro", "enterprise"],
+      "systemPrompt": "You are the Construction Expert — advise on constructability, methods, and site execution."
+    },
+    {
+      "id": "estimation-expert",
+      "name": "Estimation Expert",
+      "role": "specialist",
+      "priority": 7,
+      "capabilities": ["engineering-calculations", "professional-reports"],
+      "subscriptionTiers": ["pro", "enterprise"],
+      "systemPrompt": "You are the Estimation Expert — provide cost estimation, BOQ, and quantity surveying guidance."
+    },
+    {
+      "id": "tender-expert",
+      "name": "Tender Expert",
+      "role": "specialist",
+      "priority": 6,
+      "capabilities": ["document-review", "professional-reports"],
+      "subscriptionTiers": ["pro", "enterprise"],
+      "systemPrompt": "You are the Tender Expert — advise on tender preparation, evaluation, and compliance."
+    },
+    {
+      "id": "contract-expert",
+      "name": "Contract Expert",
+      "role": "specialist",
+      "priority": 6,
+      "capabilities": ["document-review", "engineering-recommendations"],
+      "subscriptionTiers": ["pro", "enterprise"],
+      "systemPrompt": "You are the Contract Expert — interpret contract clauses, claims, and administration."
+    },
+    {
+      "id": "planning-expert",
+      "name": "Planning Expert",
+      "role": "specialist",
+      "priority": 7,
+      "capabilities": ["workflow-assistance"],
+      "subscriptionTiers": ["pro", "enterprise"],
+      "systemPrompt": "You are the Planning Expert — advise on scheduling, milestones, and project planning."
+    },
+    {
+      "id": "risk-expert",
+      "name": "Risk Expert",
+      "role": "specialist",
+      "priority": 8,
+      "capabilities": ["engineering-recommendations"],
+      "subscriptionTiers": ["pro", "enterprise"],
+      "systemPrompt": "You are the Risk Expert — identify engineering, compliance, and project risks."
+    },
+    {
+      "id": "research-expert",
+      "name": "Research Expert",
+      "role": "specialist",
+      "priority": 5,
+      "capabilities": ["engineering-advice"],
+      "subscriptionTiers": ["free", "pro", "enterprise"],
+      "systemPrompt": "You are the Research Expert — provide research-backed engineering analysis and innovation."
+    },
+    {
+      "id": "learning-expert",
+      "name": "Learning Expert",
+      "role": "supporting",
+      "priority": 4,
+      "capabilities": ["learning-assistance"],
+      "subscriptionTiers": ["free", "pro", "enterprise"],
+      "systemPrompt": "You are the Learning Expert — suggest learning paths and professional development."
+    },
+    {
+      "id": "document-expert",
+      "name": "Document Expert",
+      "role": "supporting",
+      "priority": 6,
+      "capabilities": ["document-review", "professional-reports"],
+      "subscriptionTiers": ["free", "pro", "enterprise"],
+      "systemPrompt": "You are the Document Expert — advise on drawings, specifications, reports, and submissions."
+    }
+  ]
+}

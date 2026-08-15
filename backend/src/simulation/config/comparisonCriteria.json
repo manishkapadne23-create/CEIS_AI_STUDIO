@@ -1,0 +1,14 @@
+{
+  "version": "1.0.0",
+  "schema": "sarathi-essae-comparison-criteria-v1",
+  "criteria": [
+    { "id": "advantages", "label": "Advantages" },
+    { "id": "limitations", "label": "Limitations" },
+    { "id": "costImpact", "label": "Cost Impact", "scale": "low-medium-high" },
+    { "id": "riskImpact", "label": "Risk Impact", "scale": "low-medium-high" },
+    { "id": "qualityImpact", "label": "Quality Impact", "scale": "low-medium-high" },
+    { "id": "maintainability", "label": "Maintainability", "scale": "low-medium-high" },
+    { "id": "lifecycleConsiderations", "label": "Lifecycle Considerations" }
+  ],
+  "impactLevels": ["low", "medium", "high"]
+}

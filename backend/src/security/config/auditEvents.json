@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0",
+  "schema": "sarathi-esipf-audit-events-v1",
+  "events": [
+    { "type": "auth.login", "category": "AUTH", "label": "User login" },
+    { "type": "auth.logout", "category": "AUTH", "label": "User logout" },
+    { "type": "auth.login_failed", "category": "AUTH", "label": "Failed login" },
+    { "type": "auth.register", "category": "AUTH", "label": "User registration" },
+    { "type": "auth.token_refresh", "category": "AUTH", "label": "Token refresh" },
+    { "type": "auth.denied", "category": "AUTH", "label": "Authorization denied" },
+    { "type": "ai.chat", "category": "AI", "label": "AI chat" },
+    { "type": "ai.complete", "category": "AI", "label": "AI completion" },
+    { "type": "ai.stream", "category": "AI", "label": "AI stream" },
+    { "type": "document.upload", "category": "DOCUMENT", "label": "Document upload" },
+    { "type": "document.download", "category": "DOCUMENT", "label": "Document download" },
+    { "type": "report.generate", "category": "DOCUMENT", "label": "Report generation" },
+    { "type": "subscription.change", "category": "SUBSCRIPTION", "label": "Subscription change" },
+    { "type": "wallet.transaction", "category": "WALLET", "label": "Wallet transaction" },
+    { "type": "admin.plugin", "category": "ADMIN", "label": "Plugin administration" },
+    { "type": "admin.governance", "category": "ADMIN", "label": "Governance administration" },
+    { "type": "api.abuse", "category": "API", "label": "API abuse detected" },
+    { "type": "security.tamper", "category": "SECURITY", "label": "Tamper detection" },
+    { "type": "security.brute_force", "category": "SECURITY", "label": "Brute force attempt" }
+  ]
+}

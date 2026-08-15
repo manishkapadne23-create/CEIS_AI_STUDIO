@@ -1,0 +1,19 @@
+{
+  "version": "1.0.0",
+  "schema": "sarathi-eece-reference-graph-v1",
+  "nodeTypes": ["standard", "calculator", "template", "checklist", "report", "learning-resource"],
+  "relations": [
+    { "from": "standard", "to": "calculator", "relationship": "informs" },
+    { "from": "calculator", "to": "template", "relationship": "feeds" },
+    { "from": "template", "to": "checklist", "relationship": "validates" },
+    { "from": "checklist", "to": "report", "relationship": "supports" },
+    { "from": "report", "to": "learning-resource", "relationship": "references" }
+  ],
+  "intentBindings": {
+    "design": ["standard", "calculator", "template", "checklist"],
+    "calculation": ["standard", "calculator", "template"],
+    "code-search": ["standard", "learning-resource"],
+    "estimation": ["template", "checklist", "report"],
+    "learning": ["learning-resource", "standard"]
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "version": "1.0.0",
+  "schema": "sarathi-eece-citation-types-v1",
+  "citationTypes": [
+    { "id": "engineering-standard", "label": "Engineering Standard", "enum": "ENGINEERING_STANDARD", "trustWeight": 1.0 },
+    { "id": "clause-reference", "label": "Clause Reference", "enum": "CLAUSE_REFERENCE", "trustWeight": 0.95 },
+    { "id": "design-manual", "label": "Design Manual", "enum": "DESIGN_MANUAL", "trustWeight": 0.9 },
+    { "id": "specification", "label": "Specification", "enum": "SPECIFICATION", "trustWeight": 0.9 },
+    { "id": "research-paper", "label": "Research Paper", "enum": "RESEARCH_PAPER", "trustWeight": 0.85 },
+    { "id": "company-knowledge", "label": "Company Knowledge", "enum": "COMPANY_KNOWLEDGE", "trustWeight": 0.8 },
+    { "id": "user-document", "label": "User Document", "enum": "USER_DOCUMENT", "trustWeight": 0.75 },
+    { "id": "ai-generated", "label": "AI Generated", "enum": "AI_GENERATED", "trustWeight": 0.4 }
+  ]
+}

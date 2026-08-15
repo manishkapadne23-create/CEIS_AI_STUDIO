@@ -1,0 +1,168 @@
+{
+  "version": "1.0.0",
+  "schema": "sarathi-engineering-disciplines-v1",
+  "disciplines": [
+    {
+      "id": "civil-engineering",
+      "name": "Civil Engineering",
+      "icon": "🏗️",
+      "description": "Infrastructure, structures, transportation, water resources, and construction engineering.",
+      "color": "#0ea5e9",
+      "active": true,
+      "displayOrder": 1
+    },
+    {
+      "id": "mechanical-engineering",
+      "name": "Mechanical Engineering",
+      "icon": "⚙️",
+      "description": "Design, thermal systems, manufacturing, HVAC, and mechanical systems engineering.",
+      "color": "#6366f1",
+      "active": true,
+      "displayOrder": 2
+    },
+    {
+      "id": "electrical-engineering",
+      "name": "Electrical Engineering",
+      "icon": "⚡",
+      "description": "Power systems, machines, control systems, and electrical infrastructure.",
+      "color": "#eab308",
+      "active": true,
+      "displayOrder": 3
+    },
+    {
+      "id": "computer-engineering",
+      "name": "Computer Engineering",
+      "icon": "💻",
+      "description": "Software, AI, data systems, networking, and computing platforms.",
+      "color": "#22c55e",
+      "active": true,
+      "displayOrder": 4
+    },
+    {
+      "id": "electronics-telecommunication-engineering",
+      "name": "Electronics & Telecommunication",
+      "icon": "📡",
+      "description": "Electronics design, communications, embedded systems, and signal processing.",
+      "color": "#a855f7",
+      "active": true,
+      "displayOrder": 5
+    },
+    {
+      "id": "chemical-engineering",
+      "name": "Chemical Engineering",
+      "icon": "🧪",
+      "description": "Process engineering, plant design, reaction engineering, and process safety.",
+      "color": "#f97316",
+      "active": true,
+      "displayOrder": 6
+    },
+    {
+      "id": "environmental-engineering",
+      "name": "Environmental Engineering",
+      "icon": "🌿",
+      "description": "Water treatment, pollution control, sustainability, and environmental compliance.",
+      "color": "#10b981",
+      "active": true,
+      "displayOrder": 7
+    },
+    {
+      "id": "mining-engineering",
+      "name": "Mining Engineering",
+      "icon": "⛏️",
+      "description": "Mine planning, mineral processing, rock mechanics, and mine safety.",
+      "color": "#78716c",
+      "active": true,
+      "displayOrder": 8
+    },
+    {
+      "id": "marine-engineering",
+      "name": "Marine Engineering",
+      "icon": "⚓",
+      "description": "Ship design, offshore structures, port engineering, and naval architecture.",
+      "color": "#0284c7",
+      "active": true,
+      "displayOrder": 9
+    },
+    {
+      "id": "aerospace-engineering",
+      "name": "Aerospace Engineering",
+      "icon": "🚀",
+      "description": "Aircraft, spacecraft, propulsion, avionics, and flight systems.",
+      "color": "#4f46e5",
+      "active": true,
+      "displayOrder": 10
+    },
+    {
+      "id": "railway-engineering",
+      "name": "Railway Engineering",
+      "icon": "🚆",
+      "description": "Track, signalling, electrification, rolling stock, and metro systems.",
+      "color": "#dc2626",
+      "active": true,
+      "displayOrder": 11
+    },
+    {
+      "id": "industrial-engineering",
+      "name": "Industrial Engineering",
+      "icon": "🏭",
+      "description": "Operations, quality, lean manufacturing, logistics, and facility planning.",
+      "color": "#64748b",
+      "active": true,
+      "displayOrder": 12
+    },
+    {
+      "id": "automation-robotics",
+      "name": "Automation & Robotics",
+      "icon": "🤖",
+      "description": "Industrial automation, PLC/SCADA, robotics, and smart manufacturing.",
+      "color": "#06b6d4",
+      "active": true,
+      "displayOrder": 13
+    },
+    {
+      "id": "renewable-energy",
+      "name": "Renewable Energy",
+      "icon": "🌞",
+      "description": "Solar, wind, hydro, storage, and smart energy systems.",
+      "color": "#84cc16",
+      "active": true,
+      "displayOrder": 14
+    },
+    {
+      "id": "architecture-planning",
+      "name": "Architecture & Planning",
+      "icon": "🏛️",
+      "description": "Building design, urban planning, landscape, and smart cities.",
+      "color": "#d946ef",
+      "active": true,
+      "displayOrder": 15
+    },
+    {
+      "id": "agricultural-engineering",
+      "name": "Agricultural Engineering",
+      "icon": "🌾",
+      "description": "Irrigation, farm machinery, soil conservation, and agri-energy systems.",
+      "color": "#65a30d",
+      "active": true,
+      "displayOrder": 16
+    },
+    {
+      "id": "biomedical-engineering",
+      "name": "Biomedical Engineering",
+      "icon": "🩺",
+      "description": "Medical devices, biomaterials, clinical engineering, and healthcare technology.",
+      "color": "#ec4899",
+      "active": true,
+      "displayOrder": 17
+    },
+    {
+      "id": "oil-gas-engineering",
+      "name": "Oil & Gas Engineering",
+      "icon": "🛢️",
+      "description": "Exploration, drilling, production, pipelines, and refinery engineering.",
+      "color": "#b45309",
+      "active": true,
+      "displayOrder": 18
+    }
+  ]
+}
