@@ -76,7 +76,7 @@ const LoginPage: React.FC = () => {
 
           <Card className="mx-auto w-full max-w-md border-slate-800/80 bg-slate-900/80">
             <div className="mb-8 flex justify-center">
-              <Logo title="Sarathi Intelligence" subtitle="PMIS" />
+              <Logo size="lg" align="center" />
             </div>
 
             <div className="mb-8 space-y-2 text-center">

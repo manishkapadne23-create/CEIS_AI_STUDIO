@@ -1,0 +1,105 @@
+{
+  "version": "1.0.0",
+  "schema": "sarathi-engineering-knowledge-framework-v1",
+  "description": "Universal knowledge categories inherited by every engineering discipline and specialization.",
+  "categories": [
+    {
+      "id": "standards-codes",
+      "label": "Standards & Codes",
+      "description": "National and international codes, standards, and regulatory references.",
+      "icon": "📜",
+      "sortOrder": 1
+    },
+    {
+      "id": "design-manuals",
+      "label": "Design Manuals",
+      "description": "Design guides, manuals, and engineering handbooks.",
+      "icon": "📘",
+      "sortOrder": 2
+    },
+    {
+      "id": "specifications",
+      "label": "Specifications",
+      "description": "Material, product, and project specifications.",
+      "icon": "📋",
+      "sortOrder": 3
+    },
+    {
+      "id": "standard-drawings",
+      "label": "Standard Drawings",
+      "description": "Typical drawings, details, and standard layouts.",
+      "icon": "📐",
+      "sortOrder": 4
+    },
+    {
+      "id": "engineering-calculators",
+      "label": "Engineering Calculators",
+      "description": "Calculation sheets, design tools, and computation templates.",
+      "icon": "🧮",
+      "sortOrder": 5
+    },
+    {
+      "id": "checklists",
+      "label": "Checklists",
+      "description": "Design, review, and submission checklists.",
+      "icon": "✅",
+      "sortOrder": 6
+    },
+    {
+      "id": "qa-qc",
+      "label": "QA/QC",
+      "description": "Quality assurance and quality control procedures.",
+      "icon": "🔍",
+      "sortOrder": 7
+    },
+    {
+      "id": "boq-estimation",
+      "label": "BOQ & Estimation",
+      "description": "Bill of quantities, cost estimation, and rate analysis.",
+      "icon": "💰",
+      "sortOrder": 8
+    },
+    {
+      "id": "construction-methodology",
+      "label": "Construction Methodology",
+      "description": "Method statements, execution plans, and construction sequences.",
+      "icon": "🏗️",
+      "sortOrder": 9
+    },
+    {
+      "id": "inspection-formats",
+      "label": "Inspection Formats",
+      "description": "Inspection reports, test formats, and acceptance records.",
+      "icon": "📝",
+      "sortOrder": 10
+    },
+    {
+      "id": "safety-guidelines",
+      "label": "Safety Guidelines",
+      "description": "Safety procedures, hazard controls, and HSE guidance.",
+      "icon": "🦺",
+      "sortOrder": 11
+    },
+    {
+      "id": "technical-papers",
+      "label": "Technical Papers",
+      "description": "Research papers, technical notes, and white papers.",
+      "icon": "📄",
+      "sortOrder": 12
+    },
+    {
+      "id": "case-studies",
+      "label": "Case Studies",
+      "description": "Project case studies, lessons learned, and reference projects.",
+      "icon": "📊",
+      "sortOrder": 13
+    },
+    {
+      "id": "faqs",
+      "label": "FAQs",
+      "description": "Frequently asked engineering questions and answers.",
+      "icon": "❓",
+      "sortOrder": 14
+    }
+  ]
+}

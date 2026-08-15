@@ -7,6 +7,12 @@
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
+html,
+body,
+#root {
+  height: 100%;
+}
+
 body {
   margin: 0;
   min-height: 100vh;
@@ -20,6 +26,48 @@ body {
 
 * {
   box-sizing: border-box;
+}
+
+@layer components {
+  .workspace-category-grid {
+    display: grid;
+    gap: 1rem;
+    grid-auto-rows: 1fr;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  @media (min-width: 640px) {
+    .workspace-category-grid {
+      grid-template-columns: repeat(2, minmax(280px, 1fr));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .workspace-category-grid {
+      grid-template-columns: repeat(3, minmax(280px, 1fr));
+    }
+  }
+
+  .workspace-card-title {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    overflow-wrap: break-word;
+    word-break: normal;
+    line-height: 1.375;
+    min-height: calc(1.375em * 2);
+  }
+
+  .workspace-card-description {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    overflow-wrap: break-word;
+    word-break: normal;
+    line-height: 1.5;
+  }
 }
 
 /* Animations */
@@ -46,6 +94,15 @@ body {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 
@@ -163,7 +220,52 @@ html {
   }
 }
 
-/* Premium text effects */
+/* Workspace dashboard cards */
+@layer components {
+  .workspace-card-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.25rem;
+    align-items: stretch;
+  }
+
+  @media (min-width: 768px) {
+    .workspace-card-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .workspace-card-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .workspace-card-title {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    overflow-wrap: normal;
+    word-break: normal;
+    hyphens: manual;
+    white-space: normal;
+    line-height: 1.375;
+    min-height: 2.75rem;
+  }
+
+  @media (min-width: 640px) {
+    .workspace-card-title {
+      min-height: 3rem;
+    }
+  }
+
+  .workspace-category-card {
+    min-height: 13.75rem;
+    height: 100%;
+  }
+}
+
 .text-gradient {
   background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #a855f7 100%);
   -webkit-background-clip: text;

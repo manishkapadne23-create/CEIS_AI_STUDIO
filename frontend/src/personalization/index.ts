@@ -1,0 +1,10 @@
+export * from "./types";
+export * from "./profileEngine";
+export * from "./preferencesManager";
+export * from "./disciplineMemory";
+export * from "./activityTracker";
+export * from "./favoritesManager";
+export * from "./bookmarkManager";
+export * from "./recommendationEngine";
+export { usePersonalization } from "./hooks/usePersonalization";
+export { default as PersonalizedHomeSections } from "./components/PersonalizedHomeSections";

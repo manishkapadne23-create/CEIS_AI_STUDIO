@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import ProductBrand from './ProductBrand';
 
 const navItems = [
   { label: 'Products', href: '#products' },
   { label: 'Pricing', href: '#pricing' },
   { label: 'Roadmap', href: '#roadmap' },
-  { label: 'Why CEIS AI', href: '#why' },
+  { label: 'Why SARATHI AI', href: '#why' },
 ];
 
 const Header: React.FC = () => {
@@ -28,13 +29,11 @@ const Header: React.FC = () => {
     <header className="fixed top-0 z-50 w-full border-b border-white/5 bg-gradient-to-b from-slate-950/95 via-slate-950/90 to-transparent backdrop-blur-md">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          <a href="#" className="flex items-center gap-2" onClick={closeMenu}>
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-400 to-blue-600 text-sm font-bold text-white">
-              ⚙
+          <a href="#" className="flex items-center gap-3" onClick={closeMenu}>
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-400 to-blue-600 text-sm font-bold text-white">
+              S
             </div>
-            <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-xl font-bold text-transparent">
-              CEIS AI
-            </span>
+            <ProductBrand size="sm" className="hidden sm:block" />
           </a>
 
           <nav className="hidden items-center gap-8 md:flex">

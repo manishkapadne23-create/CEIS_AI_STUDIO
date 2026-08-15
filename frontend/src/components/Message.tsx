@@ -1,29 +1,22 @@
-import React, { useState } from "react";
+import React from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import AssistantActionBar from "./AssistantActionBar";
+import type { ChatMessage } from "../types/chatMessage";
+import type { EngineeringActionResult } from "../actions";
 
 interface MessageProps {
-  role: "user" | "assistant";
-  content: string;
-  timestamp?: Date;
+  message: ChatMessage;
+  conversationId?: string;
+  onActionResult?: (result: EngineeringActionResult) => void;
 }
 
-const Message: React.FC<MessageProps> = ({ role, content }) => {
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(content);
-      setCopied(true);
-
-      setTimeout(() => {
-        setCopied(false);
-      }, 2000);
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
+const Message: React.FC<MessageProps> = ({
+  message,
+  conversationId,
+  onActionResult,
+}) => {
+  const { role, content } = message;
   const isUser = role === "user";
 
   return (
@@ -34,8 +27,8 @@ const Message: React.FC<MessageProps> = ({ role, content }) => {
     >
       {!isUser && (
         <div className="flex-shrink-0">
-          <div className="h-8 w-8 rounded-full bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center">
-            <span className="text-xs font-bold text-white">⚙</span>
+          <div className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-cyan-500/80 to-blue-600/80">
+            <span className="text-[10px] font-bold text-white">S</span>
           </div>
         </div>
       )}
@@ -65,47 +58,13 @@ const Message: React.FC<MessageProps> = ({ role, content }) => {
           )}
         </div>
 
-        {!isUser && (
-          <div className="flex items-center gap-2 mt-2 px-2">
-            <button
-              onClick={handleCopy}
-              className="p-1.5 rounded-lg hover:bg-slate-800 transition-colors text-slate-400 hover:text-slate-300"
-              title="Copy response"
-            >
-              {copied ? (
-                <svg
-                  className="w-4 h-4"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    clipRule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                  />
-                </svg>
-              ) : (
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
-                  />
-                </svg>
-              )}
-            </button>
-
-            <span className="text-xs text-slate-500">
-              {copied ? "Copied!" : "Copy"}
-            </span>
-          </div>
-        )}
+        {!isUser && conversationId ? (
+          <AssistantActionBar
+            message={message}
+            conversationId={conversationId}
+            onActionResult={onActionResult}
+          />
+        ) : null}
       </div>
 
       {isUser && (

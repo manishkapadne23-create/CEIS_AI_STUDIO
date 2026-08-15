@@ -1,0 +1,27 @@
+{
+  "version": "1.0.0",
+  "categories": [
+    { "id": "fundamentals", "label": "Fundamentals", "description": "Core principles and foundational concepts" },
+    { "id": "design", "label": "Design", "description": "Design methodology, sizing, and specification" },
+    { "id": "analysis", "label": "Analysis", "description": "Engineering analysis, modelling, and verification" },
+    { "id": "construction-manufacturing", "label": "Construction / Manufacturing", "description": "Execution, fabrication, and site practice" },
+    { "id": "testing", "label": "Testing", "description": "Laboratory and field testing procedures" },
+    { "id": "inspection", "label": "Inspection", "description": "Quality inspection and acceptance criteria" },
+    { "id": "maintenance", "label": "Maintenance", "description": "Operations, maintenance, and lifecycle care" },
+    { "id": "safety", "label": "Safety", "description": "Safety engineering, hazards, and risk controls" },
+    { "id": "standards", "label": "Standards", "description": "Applicable codes, standards, and specifications" },
+    { "id": "specifications", "label": "Specifications", "description": "Project and material specifications" },
+    { "id": "best-practices", "label": "Best Practices", "description": "Industry best practices and professional guidance" },
+    { "id": "checklists", "label": "Checklists", "description": "Engineering checklists and review gates" },
+    { "id": "troubleshooting", "label": "Troubleshooting", "description": "Fault diagnosis and corrective actions" },
+    { "id": "faqs", "label": "FAQs", "description": "Frequently asked engineering questions" }
+  ],
+  "catalogModules": [
+    { "id": "ai-expert", "label": "AI Expert", "catalogKey": "aiExpert" },
+    { "id": "standards", "label": "Standards & Codes", "catalogKey": "standards" },
+    { "id": "calculators", "label": "Calculators", "catalogKey": "calculators" },
+    { "id": "professional-tools", "label": "Professional Tools", "catalogKey": "professionalTools" },
+    { "id": "documents", "label": "Documents", "catalogKey": "documents" },
+    { "id": "learning-hub", "label": "Learning Hub", "catalogKey": "learningHub" }
+  ]
+}

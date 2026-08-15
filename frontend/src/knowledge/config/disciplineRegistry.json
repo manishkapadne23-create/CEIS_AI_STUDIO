@@ -1,0 +1,24 @@
+{
+  "version": "1.0.0",
+  "schema": "sarathi-engineering-knowledge-discipline-v1",
+  "disciplines": [
+    { "id": "civil-engineering", "name": "Civil Engineering", "aiPersonalityKey": "civil-engineering" },
+    { "id": "mechanical-engineering", "name": "Mechanical Engineering", "aiPersonalityKey": "mechanical-engineering" },
+    { "id": "electrical-engineering", "name": "Electrical Engineering", "aiPersonalityKey": "electrical-engineering" },
+    { "id": "computer-engineering", "name": "Computer Engineering", "aiPersonalityKey": "computer-engineering" },
+    { "id": "electronics-telecommunication-engineering", "name": "Electronics & Telecommunication", "aiPersonalityKey": "electronics-telecommunication-engineering" },
+    { "id": "chemical-engineering", "name": "Chemical Engineering", "aiPersonalityKey": "chemical-engineering" },
+    { "id": "environmental-engineering", "name": "Environmental Engineering", "aiPersonalityKey": "environmental-engineering" },
+    { "id": "mining-engineering", "name": "Mining Engineering", "aiPersonalityKey": "mining-engineering" },
+    { "id": "marine-engineering", "name": "Marine Engineering", "aiPersonalityKey": "marine-engineering" },
+    { "id": "aerospace-engineering", "name": "Aerospace Engineering", "aiPersonalityKey": "aerospace-engineering" },
+    { "id": "railway-engineering", "name": "Railway Engineering", "aiPersonalityKey": "railway-engineering" },
+    { "id": "industrial-engineering", "name": "Industrial Engineering", "aiPersonalityKey": "industrial-engineering" },
+    { "id": "automation-robotics", "name": "Automation & Robotics", "aiPersonalityKey": "automation-robotics" },
+    { "id": "renewable-energy", "name": "Renewable Energy", "aiPersonalityKey": "renewable-energy" },
+    { "id": "architecture-planning", "name": "Architecture & Planning", "aiPersonalityKey": "architecture-planning" },
+    { "id": "agricultural-engineering", "name": "Agricultural Engineering", "aiPersonalityKey": "agricultural-engineering" },
+    { "id": "biomedical-engineering", "name": "Biomedical Engineering", "aiPersonalityKey": "biomedical-engineering" },
+    { "id": "oil-gas-engineering", "name": "Oil & Gas Engineering", "aiPersonalityKey": "oil-gas-engineering" }
+  ]
+}
